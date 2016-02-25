@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import <Firebase/Firebase.h>
+#import <Firebase/Firebase.h>
+#import "AppDelegate.h"
 @interface ViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *batteryLevelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *batteryStateLabel;
+@property (strong, nonatomic) AppDelegate *appDelegate;
 
 
 @end

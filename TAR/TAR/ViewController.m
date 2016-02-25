@@ -15,7 +15,7 @@
 
 @implementation ViewController
 
-@synthesize batteryLevelLabel, batteryStateLabel;
+@synthesize batteryLevelLabel, batteryStateLabel, appDelegate;
 
 - (void)batteryLevelChanged:(NSNotification *)notification
 {
@@ -65,7 +65,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [UIDevice currentDevice].batteryMonitoringEnabled = YES;
     [self batteryLevelChanged:nil];
     [self batteryStateChanged:nil];

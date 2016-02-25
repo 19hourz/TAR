@@ -13,10 +13,14 @@
 @end
 
 @implementation AppDelegate
-
+@synthesize firebase, user_ref, storyboard, defaultAction, uid, name;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    firebase = [[Firebase alloc] initWithUrl:@"https://taruibe.firebaseio.com"];
+    user_ref = [firebase childByAppendingPath:@"users"];
+    storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
     return YES;
 }
 
@@ -107,6 +111,16 @@
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     return _managedObjectContext;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.window endEditing:YES];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 #pragma mark - Core Data Saving support

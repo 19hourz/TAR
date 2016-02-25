@@ -16,6 +16,8 @@
 		52EEA37F1C794A2A00EC8A5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EEA37D1C794A2A00EC8A5A /* LaunchScreen.storyboard */; };
 		52EEA38A1C794A2A00EC8A5A /* TARTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEA3891C794A2A00EC8A5A /* TARTests.m */; };
 		52EEA3951C794A2A00EC8A5A /* TARUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEA3941C794A2A00EC8A5A /* TARUITests.m */; };
+		52EEA42E1C7F91DA00EC8A5A /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEA42D1C7F91DA00EC8A5A /* SignUpViewController.m */; };
+		52EEA4321C7F9E1F00EC8A5A /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEA4311C7F9E1F00EC8A5A /* ChangePasswordViewController.m */; };
 		DFE2D375A1B99C32BAB47796 /* libPods-TAR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A244D64EBFCA687C15EB7 /* libPods-TAR.a */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +57,10 @@
 		52EEA3901C794A2A00EC8A5A /* TARUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TARUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EEA3941C794A2A00EC8A5A /* TARUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TARUITests.m; sourceTree = "<group>"; };
 		52EEA3961C794A2A00EC8A5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52EEA42A1C7F918C00EC8A5A /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		52EEA42D1C7F91DA00EC8A5A /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		52EEA4311C7F9E1F00EC8A5A /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
+		52EEA4331C7F9E3600EC8A5A /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
 		BE7A244D64EBFCA687C15EB7 /* libPods-TAR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TAR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8048143AD7910F4A7D3E2CB /* Pods-TAR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAR.release.xcconfig"; path = "Pods/Target Support Files/Pods-TAR/Pods-TAR.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +143,10 @@
 				52EEA3801C794A2A00EC8A5A /* Info.plist */,
 				52EEA3781C794A2A00EC8A5A /* TAR.xcdatamodeld */,
 				52EEA36C1C794A2900EC8A5A /* Supporting Files */,
+				52EEA42A1C7F918C00EC8A5A /* SignUpViewController.h */,
+				52EEA42D1C7F91DA00EC8A5A /* SignUpViewController.m */,
+				52EEA4311C7F9E1F00EC8A5A /* ChangePasswordViewController.m */,
+				52EEA4331C7F9E3600EC8A5A /* ChangePasswordViewController.h */,
 			);
 			path = TAR;
 			sourceTree = "<group>";
@@ -350,8 +360,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EEA3741C794A2A00EC8A5A /* ViewController.m in Sources */,
+				52EEA42E1C7F91DA00EC8A5A /* SignUpViewController.m in Sources */,
 				52EEA3711C794A2A00EC8A5A /* AppDelegate.m in Sources */,
 				52EEA36E1C794A2900EC8A5A /* main.m in Sources */,
+				52EEA4321C7F9E1F00EC8A5A /* ChangePasswordViewController.m in Sources */,
 				52EEA37A1C794A2A00EC8A5A /* TAR.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
