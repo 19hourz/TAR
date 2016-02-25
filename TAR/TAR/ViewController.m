@@ -17,44 +17,6 @@
 
 @synthesize batteryLevelLabel, batteryStateLabel;
 
-//- (void)updateBatteryLevel
-//{
-//    float batteryLevel = [UIDevice currentDevice].batteryLevel;
-//    if (batteryLevel < 0.0) {
-//        // -1.0 means battery state is UIDeviceBatteryStateUnknown
-//        self.levelLabel.text = NSLocalizedString(@"Unknown", @"");
-//    }
-//    else {
-//        static NSNumberFormatter *numberFormatter = nil;
-//        if (numberFormatter == nil) {
-//            numberFormatter = [[NSNumberFormatter alloc] init];
-//            [numberFormatter setNumberStyle:NSNumberFormatterPercentStyle];
-//            [numberFormatter setMaximumFractionDigits:1];
-//        }
-//        
-//        NSNumber *levelObj = [NSNumber numberWithFloat:batteryLevel];
-//        self.levelLabel.text = [numberFormatter stringFromNumber:levelObj];
-//    }
-//}
-
-//- (void)updateBatteryState
-//{
-//    NSArray *batteryStateCells = @[self.unknownCell, self.unpluggedCell, self.chargingCell, self.fullCell];
-//    
-//    UIDeviceBatteryState currentState = [UIDevice currentDevice].batteryState;
-//    
-//    for (int i = 0; i < [batteryStateCells count]; i++) {
-//        UITableViewCell *cell = (UITableViewCell *) batteryStateCells[i];
-//        
-//        if (i + UIDeviceBatteryStateUnknown == currentState) {
-//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//        }
-//        else {
-//            cell.accessoryType = UITableViewCellAccessoryNone;
-//        }
-//    }
-//}
-//
 - (void)batteryLevelChanged:(NSNotification *)notification
 {
     float batteryLevel = [UIDevice currentDevice].batteryLevel;
@@ -96,6 +58,7 @@
         default:
             break;
     }
+    self.batteryStateLabel.text = batteryState;
     NSLog(@"Battery state: %@", batteryState);
 }
 
