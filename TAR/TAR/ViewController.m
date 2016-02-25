@@ -10,18 +10,118 @@
 
 @interface ViewController ()
 
+
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+@synthesize batteryLevelLabel, batteryStateLabel;
+
+//- (void)updateBatteryLevel
+//{
+//    float batteryLevel = [UIDevice currentDevice].batteryLevel;
+//    if (batteryLevel < 0.0) {
+//        // -1.0 means battery state is UIDeviceBatteryStateUnknown
+//        self.levelLabel.text = NSLocalizedString(@"Unknown", @"");
+//    }
+//    else {
+//        static NSNumberFormatter *numberFormatter = nil;
+//        if (numberFormatter == nil) {
+//            numberFormatter = [[NSNumberFormatter alloc] init];
+//            [numberFormatter setNumberStyle:NSNumberFormatterPercentStyle];
+//            [numberFormatter setMaximumFractionDigits:1];
+//        }
+//        
+//        NSNumber *levelObj = [NSNumber numberWithFloat:batteryLevel];
+//        self.levelLabel.text = [numberFormatter stringFromNumber:levelObj];
+//    }
+//}
+
+//- (void)updateBatteryState
+//{
+//    NSArray *batteryStateCells = @[self.unknownCell, self.unpluggedCell, self.chargingCell, self.fullCell];
+//    
+//    UIDeviceBatteryState currentState = [UIDevice currentDevice].batteryState;
+//    
+//    for (int i = 0; i < [batteryStateCells count]; i++) {
+//        UITableViewCell *cell = (UITableViewCell *) batteryStateCells[i];
+//        
+//        if (i + UIDeviceBatteryStateUnknown == currentState) {
+//            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+//        }
+//        else {
+//            cell.accessoryType = UITableViewCellAccessoryNone;
+//        }
+//    }
+//}
+//
+- (void)batteryLevelChanged:(NSNotification *)notification
+{
+    float batteryLevel = [UIDevice currentDevice].batteryLevel;
+    if (batteryLevel < 0.0) {
+        // -1.0 means battery state is UIDeviceBatteryStateUnknown
+        self.batteryLevelLabel.text = NSLocalizedString(@"Unknown", @"");
+        NSLog(@"Battery level: Unknwon");
+    }
+    else {
+        static NSNumberFormatter *numberFormatter = nil;
+        if (numberFormatter == nil) {
+            numberFormatter = [[NSNumberFormatter alloc] init];
+            [numberFormatter setNumberStyle:NSNumberFormatterPercentStyle];
+            [numberFormatter setMaximumFractionDigits:1];
+        }
+    
+        NSNumber *levelObj = [NSNumber numberWithFloat:batteryLevel];
+        self.batteryLevelLabel.text = [numberFormatter stringFromNumber:levelObj];
+        NSLog(@"Battery level: %f%%", batteryLevel*100);
+    }
+}
+- (void)batteryStateChanged:(NSNotification *)notification
+{
+    UIDeviceBatteryState currentState = [UIDevice currentDevice].batteryState;
+    NSString* batteryState = @"";
+    switch (currentState) {
+        case 0:
+            batteryState = @"unknow";
+            break;
+        case 1:
+            batteryState = @"unplugged";
+            break;
+        case 2:
+            batteryState = @"charging";
+            break;
+        case 3:
+            batteryState = @"full";
+            break;
+        default:
+            break;
+    }
+    NSLog(@"Battery state: %@", batteryState);
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+    [self batteryLevelChanged:nil];
+    [self batteryStateChanged:nil];
+    // Register for battery level and state change notifications.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(batteryLevelChanged:)
+                                                 name:UIDeviceBatteryLevelDidChangeNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(batteryStateChanged:)
+                                                 name:UIDeviceBatteryStateDidChangeNotification object:nil];
+
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end
