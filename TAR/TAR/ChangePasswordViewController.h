@@ -11,7 +11,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface  ChangePasswordViewController : UIViewController
+@interface  ChangePasswordViewController : UIViewController 
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
 @property (weak, nonatomic) IBOutlet UITextField *OldPasswordTextField;

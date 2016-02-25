@@ -19,7 +19,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email address here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6zt-K6-5Gj">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="91" y="133" width="217" height="30"/>
                                 </variation>
@@ -38,7 +38,7 @@
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Back"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="328" y="28" width="34" height="30"/>
+                                    <rect key="frame" x="182" y="323" width="34" height="30"/>
                                 </variation>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="jYx-NP-YTf"/>
@@ -81,20 +81,18 @@
                     <view key="view" contentMode="scaleToFill" id="QNk-gb-aQF">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2v-dj-ZGB">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Back"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your old password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dMn-y2-BQH">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="331" y="34" width="34" height="30"/>
+                                    <rect key="frame" x="102" y="105" width="197" height="30"/>
                                 </variation>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="yqc-bO-SCc"/>
-                                </connections>
-                            </button>
+                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your new password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="798-ou-5pQ">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="102" y="179" width="197" height="30"/>
                                 </variation>
@@ -102,7 +100,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm your new password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T8f-Cg-u31">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="102" y="251" width="197" height="30"/>
                                 </variation>
@@ -117,32 +115,34 @@
                                     <action selector="updateNewPassword:" destination="0Kg-MG-DQA" eventType="touchUpInside" id="bCK-Oa-f8K"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your old password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dMn-y2-BQH">
-                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2v-dj-ZGB">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Back"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="102" y="105" width="197" height="30"/>
+                                    <rect key="frame" x="183" y="364" width="34" height="30"/>
                                 </variation>
-                            </textField>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="yqc-bO-SCc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="F2v-dj-ZGB"/>
+                                <exclude reference="dMn-y2-BQH"/>
                                 <exclude reference="798-ou-5pQ"/>
                                 <exclude reference="T8f-Cg-u31"/>
                                 <exclude reference="2Zl-JD-60n"/>
-                                <exclude reference="dMn-y2-BQH"/>
+                                <exclude reference="F2v-dj-ZGB"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="F2v-dj-ZGB"/>
+                                <include reference="dMn-y2-BQH"/>
                                 <include reference="798-ou-5pQ"/>
                                 <include reference="T8f-Cg-u31"/>
                                 <include reference="2Zl-JD-60n"/>
-                                <include reference="dMn-y2-BQH"/>
+                                <include reference="F2v-dj-ZGB"/>
                             </mask>
                         </variation>
                     </view>
@@ -187,28 +187,19 @@
                                     <rect key="frame" x="47" y="212" width="165" height="21"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSz-mC-5OC">
-                                <rect key="frame" x="334" y="213" width="72" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="239" y="212" width="118" height="21"/>
-                                </variation>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6w-jr-dB4">
                                 <rect key="frame" x="334" y="159" width="72" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="239" y="159" width="118" height="21"/>
+                                    <rect key="frame" x="213" y="159" width="118" height="21"/>
                                 </variation>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3kq-ZA-IMl">
                                 <rect key="frame" x="175" y="285" width="195" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="103" y="285" width="195" height="30"/>
                                 </variation>
@@ -220,14 +211,6 @@
                                     <rect key="frame" x="177" y="408" width="47" height="30"/>
                                 </variation>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JEd-JQ-GpF">
-                                <rect key="frame" x="175" y="347" width="195" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="103" y="355" width="195" height="30"/>
-                                </variation>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwg-mp-GH3">
                                 <rect key="frame" x="249" y="434" width="52" height="30"/>
                                 <state key="normal" title="Sign up"/>
@@ -238,6 +221,23 @@
                                     <segue destination="Cdb-86-ib9" kind="show" id="uNy-Ew-ovC"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JEd-JQ-GpF">
+                                <rect key="frame" x="175" y="347" width="195" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="103" y="355" width="195" height="30"/>
+                                </variation>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Unknown" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xSz-mC-5OC">
+                                <rect key="frame" x="334" y="213" width="72" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="213" y="212" width="118" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>

@@ -41,10 +41,12 @@
                 NSDictionary *new_user = @{appDelegate.uid : user_info};
                 [appDelegate.user_ref updateChildValues:new_user];
                 NSLog(@"user should have signed up");
-//                viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"memberDetailsViewController"];
-//                [self presentViewController:viewcontroller animated:YES completion:nil];
                 UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"You have signed up!" message:@"An temporary email will be sent to you, be sure to check your spam, your email is not verified until you have changed your password" preferredStyle:UIAlertControllerStyleAlert];
-                [alert addAction:appDelegate.defaultAction];
+                UIAlertAction* alertAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                    UIViewController *viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"ChangePasswordView"];
+                    [self presentViewController:viewcontroller animated:YES completion:nil];
+                }];
+                [alert addAction:alertAction];
                 [self presentViewController:alert animated:YES completion:nil];
                 [appDelegate.firebase resetPasswordForUser:SignUpEmailTextField.text withCompletionBlock:^(NSError *error) {
                     if (error) {
@@ -62,9 +64,8 @@
         [self presentViewController:alert animated:YES completion:nil];
         return;
     }
-    UIViewController *viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"ChangePasswordView"];
-    [self presentViewController:viewcontroller animated:YES completion:nil];
 }
+
 - (bool) isValidEmail: (NSString *) email{
     if([email isEqualToString:@""]){
         return NO;
@@ -76,4 +77,6 @@
         return YES;
     }
 }
+
+
 @end
