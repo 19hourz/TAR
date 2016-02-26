@@ -14,7 +14,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *batteryLevelLabel;
 @property (weak, nonatomic) IBOutlet UILabel *batteryStateLabel;
 @property (strong, nonatomic) AppDelegate *appDelegate;
+@property (weak, nonatomic) IBOutlet UITextField *emailText;
+@property (weak, nonatomic) IBOutlet UITextField *passwordText;
 
+- (IBAction)SignIn:(id)sender;
 
 @end
 

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import <Firebase/Firebase.h>
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -20,6 +21,7 @@
 @property (strong, nonatomic) UIAlertAction *defaultAction;
 @property (strong, nonatomic) Firebase *firebase;
 @property (strong, nonatomic) Firebase *user_ref;
+@property (strong, nonatomic) Firebase *user;
 @property (strong, nonatomic) NSString *uid;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *email;

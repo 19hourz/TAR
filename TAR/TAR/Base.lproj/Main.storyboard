@@ -14,6 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="yBB-v6-Fvq"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qQx-g3-Z2I">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your email address here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6zt-K6-5Gj">
@@ -79,6 +80,7 @@
                         <viewControllerLayoutGuide type="bottom" id="qTI-9t-poK"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QNk-gb-aQF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your old password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dMn-y2-BQH">
@@ -210,6 +212,9 @@
                                 <variation key="widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="177" y="408" width="47" height="30"/>
                                 </variation>
+                                <connections>
+                                    <action selector="SignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0VP-LG-Bob"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwg-mp-GH3">
                                 <rect key="frame" x="249" y="434" width="52" height="30"/>
@@ -244,11 +249,30 @@
                     <connections>
                         <outlet property="batteryLevelLabel" destination="i6w-jr-dB4" id="OO4-hg-L5M"/>
                         <outlet property="batteryStateLabel" destination="xSz-mC-5OC" id="6Mf-PZ-2Zl"/>
+                        <outlet property="emailText" destination="3kq-ZA-IMl" id="HFf-kU-SsM"/>
+                        <outlet property="passwordText" destination="JEd-JQ-GpF" id="t05-nH-r1A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="304.5" y="399"/>
+        </scene>
+        <!--User View Controller-->
+        <scene sceneID="yR4-6n-RA2">
+            <objects>
+                <viewController storyboardIdentifier="UserView" id="QYx-nL-Zd3" customClass="UserViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Rv-Wm-0G7"/>
+                        <viewControllerLayoutGuide type="bottom" id="4T3-Dx-CCg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KAp-2K-3CT">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5BA-6t-BPn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="295.5" y="1192"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

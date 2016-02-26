@@ -15,7 +15,7 @@
 
 @implementation ViewController
 
-@synthesize batteryLevelLabel, batteryStateLabel, appDelegate;
+@synthesize batteryLevelLabel, batteryStateLabel, appDelegate, emailText, passwordText;
 
 - (void)batteryLevelChanged:(NSNotification *)notification
 {
@@ -87,4 +87,38 @@
 }
 
 
+- (IBAction)SignIn:(id)sender {
+    [appDelegate.firebase authUser:emailText.text password:passwordText.text withCompletionBlock:^(NSError *error, FAuthData *authData) {
+        if (error) {
+            NSString *errorMessage = [error localizedDescription];
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:appDelegate.defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        } else {
+            appDelegate.email = emailText.text;
+            appDelegate.uid = authData.uid;
+            
+            NSString *account = [emailText text];
+            NSString *password  = [passwordText text];
+            NSString *signOut  = @"False";
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            
+            [defaults setObject:account forKey:@"account"];
+            [defaults setObject:password forKey:@"password"];
+            [defaults setObject:signOut forKey:@"signOut"];
+            
+            [defaults synchronize];
+            
+            appDelegate.user = [appDelegate.user_ref childByAppendingPath:appDelegate.uid];
+            [appDelegate.user observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                appDelegate.name = snapshot.value[@"name"];
+            } withCancelBlock:^(NSError *error) {
+                NSLog(@"%@", error.description);
+            }];
+            UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"UserView"];
+            [self presentViewController:viewcontroller animated:YES completion:nil];
+            NSLog(@"user should have signed in");
+        }
+    }];
+}
 @end

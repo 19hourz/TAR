@@ -18,6 +18,9 @@
 		52EEA3951C794A2A00EC8A5A /* TARUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEA3941C794A2A00EC8A5A /* TARUITests.m */; };
 		52EEA42E1C7F91DA00EC8A5A /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEA42D1C7F91DA00EC8A5A /* SignUpViewController.m */; };
 		52EEA4321C7F9E1F00EC8A5A /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEA4311C7F9E1F00EC8A5A /* ChangePasswordViewController.m */; };
+		52EEA43C1C8020EC00EC8A5A /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52EEA43B1C8020EC00EC8A5A /* UserViewController.m */; };
+		52EEA4851C80E03C00EC8A5A /* QR in Resources */ = {isa = PBXBuildFile; fileRef = 52EEA4841C80E03C00EC8A5A /* QR */; };
+		52EEA4881C80E60700EC8A5A /* QRCode-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52EEA4871C80E60700EC8A5A /* QRCode-Info.plist */; };
 		DFE2D375A1B99C32BAB47796 /* libPods-TAR.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE7A244D64EBFCA687C15EB7 /* libPods-TAR.a */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,11 @@
 		52EEA42D1C7F91DA00EC8A5A /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		52EEA4311C7F9E1F00EC8A5A /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
 		52EEA4331C7F9E3600EC8A5A /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		52EEA43A1C8020DB00EC8A5A /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		52EEA43B1C8020EC00EC8A5A /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		52EEA4841C80E03C00EC8A5A /* QR */ = {isa = PBXFileReference; lastKnownFileType = folder; path = QR; sourceTree = "<group>"; };
+		52EEA4861C80E5E200EC8A5A /* QRCode-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "QRCode-Prefix.pch"; sourceTree = "<group>"; };
+		52EEA4871C80E60700EC8A5A /* QRCode-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "QRCode-Info.plist"; sourceTree = "<group>"; };
 		BE7A244D64EBFCA687C15EB7 /* libPods-TAR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TAR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8048143AD7910F4A7D3E2CB /* Pods-TAR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAR.release.xcconfig"; path = "Pods/Target Support Files/Pods-TAR/Pods-TAR.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +141,7 @@
 		52EEA36B1C794A2900EC8A5A /* TAR */ = {
 			isa = PBXGroup;
 			children = (
+				52EEA4841C80E03C00EC8A5A /* QR */,
 				52EEA36F1C794A2900EC8A5A /* AppDelegate.h */,
 				52EEA3701C794A2A00EC8A5A /* AppDelegate.m */,
 				52EEA3721C794A2A00EC8A5A /* ViewController.h */,
@@ -145,8 +154,10 @@
 				52EEA36C1C794A2900EC8A5A /* Supporting Files */,
 				52EEA42A1C7F918C00EC8A5A /* SignUpViewController.h */,
 				52EEA42D1C7F91DA00EC8A5A /* SignUpViewController.m */,
-				52EEA4311C7F9E1F00EC8A5A /* ChangePasswordViewController.m */,
 				52EEA4331C7F9E3600EC8A5A /* ChangePasswordViewController.h */,
+				52EEA4311C7F9E1F00EC8A5A /* ChangePasswordViewController.m */,
+				52EEA43A1C8020DB00EC8A5A /* UserViewController.h */,
+				52EEA43B1C8020EC00EC8A5A /* UserViewController.m */,
 			);
 			path = TAR;
 			sourceTree = "<group>";
@@ -154,6 +165,8 @@
 		52EEA36C1C794A2900EC8A5A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				52EEA4871C80E60700EC8A5A /* QRCode-Info.plist */,
+				52EEA4861C80E5E200EC8A5A /* QRCode-Prefix.pch */,
 				52EEA36D1C794A2900EC8A5A /* main.m */,
 			);
 			name = "Supporting Files";
@@ -285,7 +298,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EEA37F1C794A2A00EC8A5A /* LaunchScreen.storyboard in Resources */,
+				52EEA4851C80E03C00EC8A5A /* QR in Resources */,
 				52EEA37C1C794A2A00EC8A5A /* Assets.xcassets in Resources */,
+				52EEA4881C80E60700EC8A5A /* QRCode-Info.plist in Resources */,
 				52EEA3771C794A2A00EC8A5A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -359,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52EEA43C1C8020EC00EC8A5A /* UserViewController.m in Sources */,
 				52EEA3741C794A2A00EC8A5A /* ViewController.m in Sources */,
 				52EEA42E1C7F91DA00EC8A5A /* SignUpViewController.m in Sources */,
 				52EEA3711C794A2A00EC8A5A /* AppDelegate.m in Sources */,
