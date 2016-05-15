@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-
 @interface AppDelegate ()
 
 @end
@@ -21,6 +20,14 @@
     user_ref = [firebase childByAppendingPath:@"users"];
     storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* signout = [defaults objectForKey:@"signOut"];
+    if(signout == nil || [signout isEqualToString:@""]){
+        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"SignInViewController"];
+    }
+    else if([signout isEqualToString:@"False"]){
+        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+    }
     return YES;
 }
 

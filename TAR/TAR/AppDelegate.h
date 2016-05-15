@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSString *uid;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *email;
+@property (strong, nonatomic) Firebase *surveyURL;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

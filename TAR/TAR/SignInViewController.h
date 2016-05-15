@@ -1,18 +1,18 @@
 //
-//  SignUpViewController.h
+//  SignInViewController.h
 //  TAR
 //
 //  Created by Jiasheng Zhu on 4/5/16.
 //  Copyright © 2016 Jiasheng Zhu. All rights reserved.
 //
 
-#ifndef SignUpViewController_h
-#define SignUpViewController_h
+#ifndef SignInViewController_h
+#define SignInViewController_h
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-@interface SignUpViewController : UIViewController<UITextFieldDelegate>
+@interface SignInViewController : UIViewController<UITextFieldDelegate>
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
 
 @end
-#endif /* SignUpViewController_h */
+#endif /* SignInViewController_h */
