@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "MainViewController.h"
-@import iAd;
 @interface MainViewController()
 
 @end
@@ -19,23 +18,12 @@
 
 UIActivityIndicatorView* mainSpinner;
 UITextField *accessCodeTextField;
-ADBannerView *bannerView;
-
+//GADBannerView  *bannerView;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-    //add iad
-    if ([ADBannerView instancesRespondToSelector:@selector(initWithAdType:)]) {
-        bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
-        [bannerView setFrame:CGRectMake(screenRect.size.width*0, screenRect.size.height - bannerView.frame.size.height, screenRect.size.width, bannerView.frame.size.height)];
-    }
-    else {
-        bannerView = [[ADBannerView alloc] init];
-    }
-    [self.view addSubview:bannerView];
-    
     //add a spinner
     mainSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [mainSpinner setCenter:CGPointMake(screenRect.size.width/2,  screenRect.size.height*0.47)];
@@ -145,7 +133,9 @@ ADBannerView *bannerView;
                 NSLog(@"user should have signed in");
             }
         }];
-    //}
+    //add ad
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+
 }
 
 - (void)didTapButton:(UIButton *)button{
