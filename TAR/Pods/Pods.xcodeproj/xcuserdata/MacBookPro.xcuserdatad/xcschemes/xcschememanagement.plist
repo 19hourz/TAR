@@ -4,12 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Firebase.xcscheme</key>
+		<key>Pods-TAR.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-TAR.xcscheme</key>
+		<key>Pods-TARTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-TARUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -17,12 +22,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4341250168F0EB34CDC217FA07EB23CD</key>
+		<key>484671AC67D9F9D7569690A2A1CB046B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>569735B422E0E4CEEFC5C6955AFDE3A5</key>
+		<key>99834CE1C155A2D0D91482F783D80EF3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF0D310F8BD6D723C2153966E53CE324</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -16,8 +16,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    firebase = [[Firebase alloc] initWithUrl:@"https://taruibe.firebaseio.com"];
-    user_ref = [firebase childByAppendingPath:@"users"];
+    [FIRApp configure];
+    firebase = [[FIRDatabase database] reference];
+    user_ref = [firebase child:@"users"];
     storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -53,6 +54,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
+    [[FIRAuth auth] signOut:nil];
 }
 
 #pragma mark - Core Data stack

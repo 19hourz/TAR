@@ -77,7 +77,7 @@ UITextField *accessCodeTextField;
             UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"SignInViewController"];
             [self presentViewController:viewcontroller animated:YES completion:nil];
         }];
-        [appDelegate.firebase authUser:[defaults objectForKey:@"account"] password:[defaults objectForKey:@"password"] withCompletionBlock:^(NSError *error, FAuthData *authData) {
+        [[FIRAuth auth] signInWithEmail:[defaults objectForKey:@"account"] password:[defaults objectForKey:@"password"] completion:^(FIRUser *_Nullable user,NSError *error){
             if (error) {
                 [mainSpinner stopAnimating];
                 NSString *errorMessage = [error localizedDescription];
@@ -86,21 +86,21 @@ UITextField *accessCodeTextField;
                 [self presentViewController:alert animated:YES completion:nil];
                 
             } else {
-                appDelegate.uid = authData.uid;
+                appDelegate.uid = user.uid;
                 NSLog(@"%@", appDelegate.uid);
                 appDelegate.email = [defaults objectForKey:@"account"];
                 appDelegate.name = [defaults objectForKey:@"name"];
                 if(appDelegate.name == nil || [appDelegate.name isEqualToString:@""]){
-                    Firebase* checkIfIsTutor = [[Firebase alloc] initWithUrl:@"https://taruibe.firebaseio.com"];
-                    checkIfIsTutor = [checkIfIsTutor childByAppendingPath:@"users"];
-                    [checkIfIsTutor observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                    FIRDatabaseReference* checkIfIsTutor = [[FIRDatabase database] reference];
+                    checkIfIsTutor = [checkIfIsTutor child:@"users"];
+                    [checkIfIsTutor observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
                         NSDictionary *allUsers = snapshot.value;
                         NSLog(@"%@", allUsers);
                         if([mainSpinner isAnimating]){
                             [mainSpinner stopAnimating];
                         }
-                        if([allUsers objectForKey:authData.uid]!=nil){
-                            allUsers = [allUsers objectForKey:checkIfIsTutor.authData.uid];
+                        if([allUsers objectForKey:user.uid]!=nil){
+                            allUsers = [allUsers objectForKey:user.uid];
                             NSLog(@"%@", allUsers);
                         }
                         if(allUsers[@"name"] != nil && ![allUsers[@"name"] isEqualToString:@""]){
@@ -135,7 +135,21 @@ UITextField *accessCodeTextField;
         }];
     //add ad
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-
+    CGFloat height;
+    if (screenRect.size.height <= 400) {
+        height = 32.0;
+    }
+    else if(screenRect.size.height > 720){
+        height = 90.0;
+    }
+    else{
+        height = 50.0;
+    }
+    GADBannerView  *bannerview = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait origin:CGPointMake(0, screenRect.size.height - height)];
+    bannerview.adUnitID = @"ca-app-pub-4823300671805719/5541324781";
+    bannerview.rootViewController = self;
+    [bannerview loadRequest:[GADRequest request]];
+    [self.view addSubview:bannerview];
 }
 
 - (void)didTapButton:(UIButton *)button{
@@ -164,10 +178,10 @@ UITextField *accessCodeTextField;
                 batteryLevel = 0.0;
             }
             battery = [NSNumber numberWithFloat:batteryLevel];
-            Firebase *oberser = appDelegate.firebase;
-            [oberser childByAppendingPath:@"classes"];
+            FIRDatabaseReference *oberser = appDelegate.firebase;
+            [oberser child:@"classes"];
         
-            [oberser observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+            [oberser observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
             NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
             [dateformate setDateFormat:@"dd-MM-YYYY"];
             NSString *date_String=[dateformate stringFromDate:[NSDate date]];
@@ -187,30 +201,42 @@ UITextField *accessCodeTextField;
                     [self presentViewController:alert animated:YES completion:nil];
                 }
                 else{
-                    Firebase *signin = [[Firebase alloc] initWithUrl:@"https://taruibe.firebaseio.com/classes"];
-                    signin = [signin childByAppendingPath:date_String];
-                    signin = [signin childByAppendingPath:accessString];
-                    [signin observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+                    FIRDatabaseReference *signin = appDelegate.firebase;
+                    signin = [signin child:@"classes"];
+                    signin = [signin child:date_String];
+                    signin = [signin child:accessString];
+                    [signin observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
                         NSMutableDictionary* data = snapshot.value;
                         NSMutableDictionary* students = data[@"students"];
+                        NSString* uid = appDelegate.uid;
                         if(students == nil){
-                            students = (NSMutableDictionary *)@{signin.authData.uid : @{@"email" : appDelegate.email,
-                                                                                        @"name" : appDelegate.name,
-                                                                                        @"startbattery" : [NSString stringWithFormat:@"%@", battery],
-                                                                                        @"starttime" : time_string}};
-                            NSDictionary *newStudent = @{@"students" : students};
-                            [signin updateChildValues:newStudent];
+                            if (uid != nil && ![uid isEqualToString:@""]) {
+                                students = (NSMutableDictionary *)@{uid : @{@"email" : appDelegate.email,
+                                                                            @"name" : appDelegate.name,
+                                                                            @"startbattery" : [NSString stringWithFormat:@"%@", battery],
+                                                                            @"starttime" : time_string}};
+                                NSDictionary *newStudent = @{@"students" : students};
+                                [signin updateChildValues:newStudent];
+                            }
+                            else{
+                                NSLog(@"error occuered, null uid read");
+                            }
                         }
                         else{
-                            [students setObject:@{@"email" : appDelegate.email,
+                            if (uid != nil && ![uid isEqualToString:@""]) {
+                                [students setObject:@{@"email" : appDelegate.email,
                                                   @"name" : appDelegate.name,
                                                  @"startbattery" : [NSString stringWithFormat:@"%@", battery],
-                                                  @"starttime" : time_string} forKey:signin.authData.uid];
-                            NSDictionary *newStudent = @{@"students" : students};
-                            [signin updateChildValues:newStudent];
+                                                  @"starttime" : time_string} forKey:uid];
+                                NSDictionary *newStudent = @{@"students" : students};
+                                [signin updateChildValues:newStudent];
+                            }
+                            else{
+                                NSLog(@"error occuered, null uid read");
+                            }
                         }
-                        appDelegate.surveyURL = [[Firebase alloc] initWithUrl:@"https://taruibe.firebaseio.com"];
-                        appDelegate.surveyURL = [[[[[appDelegate.surveyURL  childByAppendingPath:@"classes"] childByAppendingPath:date_String] childByAppendingPath:accessString] childByAppendingPath:@"students"] childByAppendingPath:signin.authData.uid];
+                        appDelegate.surveyURL = [[FIRDatabase database] reference];
+                        appDelegate.surveyURL = [[[[[appDelegate.surveyURL  child:@"classes"] child:date_String] child:accessString] child:@"students"] child:uid];
                         UIAlertAction* alertaction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                 UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"CurrentClassViewController"];
                                 [self presentViewController:viewcontroller animated:YES completion:nil];

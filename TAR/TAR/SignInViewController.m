@@ -121,7 +121,7 @@ UIActivityIndicatorView* signinSpinner;
 - (void)signin
 {
     [signinSpinner startAnimating];
-    [appDelegate.firebase authUser:signinEmailTextField.text password:signinPasswordTextField.text withCompletionBlock:^(NSError *error, FAuthData *authData) {
+    [[FIRAuth auth] signInWithEmail:signinEmailTextField.text password:signinPasswordTextField.text completion:^(FIRUser *_Nullable user,NSError *error) {
         if (error) {
             [signinSpinner stopAnimating];
             NSString *errorMessage = [error localizedDescription];
@@ -130,7 +130,7 @@ UIActivityIndicatorView* signinSpinner;
             [self presentViewController:alert animated:YES completion:nil];
             
         } else {
-            appDelegate.uid = authData.uid;
+            appDelegate.uid = user.uid;
             appDelegate.email = [signinEmailTextField text];
             NSString *account = [signinEmailTextField text];
             NSString *password  = [signinPasswordTextField text];

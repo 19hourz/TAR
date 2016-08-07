@@ -229,13 +229,13 @@ CGFloat bbx,bby,bbw,bbh;
         [surveyAnswers setObject:textField.text forKey:@"6"];
         [uploadAnswers setObject:textField.text forKey:@"6"];
         if(appDelegate.surveyURL == nil){
-            appDelegate.surveyURL = [[Firebase alloc] initWithUrl:@"https://taruibe.firebaseio.com"];
+            appDelegate.surveyURL = [[FIRDatabase database] reference];
             NSString* date_String = [surveyAnswers objectForKey:@"lostdate"];
             NSString* accessString = [surveyAnswers objectForKey:@"lostaccesscode"];
-            NSString* uid = appDelegate.surveyURL.authData.uid;
-            appDelegate.surveyURL = [[[[[appDelegate.surveyURL  childByAppendingPath:@"classes"] childByAppendingPath:date_String] childByAppendingPath:accessString] childByAppendingPath:@"students"] childByAppendingPath:uid];
+            NSString* uid = appDelegate.uid;
+            appDelegate.surveyURL = [[[[[appDelegate.surveyURL  child:@"classes"] child:date_String] child:accessString] child:@"students"] child:uid];
         }
-        [appDelegate.surveyURL observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        [appDelegate.surveyURL observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
             NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
             [dateformate setDateFormat:@"dd-MM-HH-mm-ss"];
             float batteryLevel = [UIDevice currentDevice].batteryLevel;
