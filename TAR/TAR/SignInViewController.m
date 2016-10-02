@@ -32,7 +32,6 @@ UIActivityIndicatorView* signinSpinner;
     [signinEmailTextField setKeyboardType:UIKeyboardTypeEmailAddress];
     [signinEmailTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
     [self.view addSubview:signinEmailTextField];
-    
     //add line below email textfield
     UIBezierPath *path1 = [UIBezierPath bezierPath];
     [path1 moveToPoint:CGPointMake(screenRect.size.width*0.15, screenRect.size.height*0.4 + 31)];
@@ -120,8 +119,7 @@ UIActivityIndicatorView* signinSpinner;
 
 - (void)signin
 {
-    [signinSpinner startAnimating];
-    [[FIRAuth auth] signInWithEmail:signinEmailTextField.text password:signinPasswordTextField.text completion:^(FIRUser *_Nullable user,NSError *error) {
+    [[WDGAuth auth] signInWithEmail:signinEmailTextField.text password:signinPasswordTextField.text completion:^(WDGUser * _Nullable user, NSError * _Nullable error) {
         if (error) {
             [signinSpinner stopAnimating];
             NSString *errorMessage = [error localizedDescription];

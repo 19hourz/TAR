@@ -108,7 +108,7 @@ UIActivityIndicatorView* spinner;
     shapeLayer3.fillColor = [[UIColor clearColor] CGColor];
     [self.view.layer addSublayer:shapeLayer3];
     
-    //add sign in button
+    //add sign up button
     UIButton *signInButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     signInButton.frame = CGRectMake(screenRect.size.width*0.2, screenRect.size.height*0.65 + 35, screenRect.size.width*0.6, 50);
     [signInButton setBackgroundColor:[UIColor colorWithRed:26/255.0 green:102/255.0 blue:140/255.0 alpha:1]];
@@ -121,7 +121,7 @@ UIActivityIndicatorView* spinner;
     [signInButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:signInButton];
     
-    //add sign up button
+    //add back button
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     backButton.frame = CGRectMake(screenRect.size.width*0.20, screenRect.size.height*0.75 + 50, screenRect.size.width*0.6, 50);
     [backButton setBackgroundColor:[UIColor colorWithRed:229.0/255.0 green:247.0/255.0 blue:248.0/255.0 alpha:1]];
@@ -164,10 +164,13 @@ UIActivityIndicatorView* spinner;
         }
         else{
             [spinner startAnimating];
-            [[FIRAuth auth] createUserWithEmail:emailTextField.text password:passwordTextField.text completion:^(FIRUser * _Nullable user,NSError *error) {
+            [[WDGAuth auth] createUserWithEmail:emailTextField.text password:passwordTextField.text completion:^(WDGUser * _Nullable user, NSError * _Nullable error) {
                 if (error) {
                     [spinner stopAnimating];
                     NSString *errorMessage = [error localizedDescription];
+                    if ([error code] == 0) {
+                        errorMessage = @"Your password is too easy";
+                    }
                     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
                     [alert addAction:appDelegate.defaultAction];
                     [self presentViewController:alert animated:YES completion:nil];
@@ -178,25 +181,17 @@ UIActivityIndicatorView* spinner;
                     [defaults setObject:passwordTextField.text forKey:@"password"];
                     [defaults setObject:@"False" forKey:@"signOut"];
                     [defaults synchronize];
-                    [[FIRAuth auth] signInWithEmail:emailTextField.text password:passwordTextField.text completion:^(FIRUser *_Nullable user,NSError *error) {
-                        if (error) {
-                            NSString *errorMessage = [error localizedDescription];
-                            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
-                            [alert addAction:appDelegate.defaultAction];
-                            [self presentViewController:alert animated:YES completion:nil];
-                        }
-                        else{
-                            NSDictionary *user_info = @{
-                                                        @"email" : emailTextField.text,
-                                                        @"id" : @"student",
-                                                        @"name" : nameTextField.text
-                                                        };
-                            NSDictionary *new_user = @{appDelegate.uid : user_info};
-                            [appDelegate.user_ref updateChildValues:new_user];
-                        }
+                    appDelegate.uid = user.uid;
+                    [[WDGAuth auth] signInWithEmail:emailTextField.text password:passwordTextField.text completion:^(WDGUser * _Nullable user, NSError * _Nullable error) {
+                        NSDictionary *user_info = @{
+                                                    @"email" : emailTextField.text,
+                                                    @"id" : @"student",
+                                                    @"name" : nameTextField.text
+                                                    };
+                        WDGSyncReference *userInfo = [[WDGSync sync] referenceWithPath:@"/users"];
+                        [[userInfo childByAutoId] setValue:user_info];
                     }];
                     appDelegate.email = emailTextField.text;
-                    appDelegate.uid = user.uid;
                     appDelegate.name = nameTextField.text;
                     NSLog(@"user should have signed up");
                     [spinner stopAnimating];

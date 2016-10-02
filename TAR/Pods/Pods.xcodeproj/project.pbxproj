@@ -7,63 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		342254CCF57023EB15C900296F42390A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		5AF38805A32D1D31847301A2FD28FD14 /* Pods-TARUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C21B3948F2565159A230C588DE8497B8 /* Pods-TARUITests-dummy.m */; };
 		65400408E45CE2B6DC08B4D476794BAF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
-		DFC1CC861FB9FC5C1099F3356532B791 /* Pods-TARTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EE4BA8489064720893C5B22B3AB9B05C /* Pods-TARTests-dummy.m */; };
-		FEA8FFB558D701F00C9A76BDFF2648F5 /* Pods-TAR-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B1834FAFB0DE1284F6ADB31A66F2EF /* Pods-TAR-dummy.m */; };
-		FF640FB823C7376B9C7E356F0A3DEFEA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		FEA8FFB558D701F00C9A76BDFF2648F5 /* Pods-TAR-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91FC3BACB05148E6F12A8E9803A21FE5 /* Pods-TAR-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		067C3F570D0253ACD608585A5F417265 /* Firebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Firebase.h; path = Headers/Firebase.h; sourceTree = "<group>"; };
-		097B2BEA914755C86193BA0DA7D2FFBE /* Pods-TARTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TARTests.debug.xcconfig"; sourceTree = "<group>"; };
-		2494EAF5697F5E329A670328B6B193A0 /* Pods-TARUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TARUITests.release.xcconfig"; sourceTree = "<group>"; };
-		2D1BFF50B266D2A17A304BFD18DC4304 /* Pods-TAR-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TAR-acknowledgements.markdown"; sourceTree = "<group>"; };
-		36D337BEA0174247B8D288BFA8EC9535 /* Pods-TAR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TAR.release.xcconfig"; sourceTree = "<group>"; };
-		45BD1E0EC3A205BB988C0F04FF27B64C /* GoogleNetworkingUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleNetworkingUtilities.framework; path = Frameworks/GoogleNetworkingUtilities.framework; sourceTree = "<group>"; };
-		4C58E53EC2AAB0F550390CF294B3A3E6 /* Pods-TAR-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TAR-acknowledgements.plist"; sourceTree = "<group>"; };
-		4E6A95EAEE0E0850DEA5A0C0130BF6DE /* Pods-TAR-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TAR-frameworks.sh"; sourceTree = "<group>"; };
-		4EB3324567152661B285BBE8C6DFE414 /* Pods-TARUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TARUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		52CEEFF7F6BB82F7546616192431D27B /* Pods-TARUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TARUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		562DCBD43B0CA859B8514BD7A661E50A /* Pods-TARTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TARTests-resources.sh"; sourceTree = "<group>"; };
-		66DBFE686BC1A65A3EAD87247ABD39AF /* FirebaseAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAuth.framework; path = Frameworks/FirebaseAuth.framework; sourceTree = "<group>"; };
-		6C1955B49E324FBD052D0AC5786603C4 /* Pods-TARUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TARUITests-acknowledgements.plist"; sourceTree = "<group>"; };
-		6D8A02163D8D8C45714557A9253957FB /* libPods-TARUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TARUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		75A73059EBB11C31687B4761276F19B6 /* libPods-TAR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TAR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		80581BC98D0A7385587C11FF68611C51 /* FirebaseAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseAnalytics.framework; path = Frameworks/FirebaseAnalytics.framework; sourceTree = "<group>"; };
-		89CCA0F7A10655C93A117CED4C6321BC /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseDatabase.framework; path = Frameworks/FirebaseDatabase.framework; sourceTree = "<group>"; };
+		2AFE33798225E360E8AE35F5C71E8C4A /* Wilddog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Wilddog.h; path = Wilddog/Sources/Wilddog.h; sourceTree = "<group>"; };
+		3237B1044AD8BCB81A72FF14FF62BFC5 /* Pods-TAR-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TAR-acknowledgements.plist"; sourceTree = "<group>"; };
+		51FD2D775469B61FC58AD9A541A466BF /* WilddogAuth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WilddogAuth.framework; sourceTree = "<group>"; };
+		65A7C13ED9C920CD854016FA546FA2CD /* Pods-TAR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TAR.debug.xcconfig"; sourceTree = "<group>"; };
+		8F8AC81DF3E75F356C17DB296DC696B5 /* Pods-TAR-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TAR-acknowledgements.markdown"; sourceTree = "<group>"; };
+		91FC3BACB05148E6F12A8E9803A21FE5 /* Pods-TAR-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TAR-dummy.m"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A0D78590A2A023CE9C7D8FFED4B4B5B1 /* Pods-TARTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TARTests-frameworks.sh"; sourceTree = "<group>"; };
-		B4874D0037C0B65649EAD4DD072F090E /* Pods-TARUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TARUITests-frameworks.sh"; sourceTree = "<group>"; };
-		B685BD2A7C826B38464745E073E406F9 /* GoogleSymbolUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleSymbolUtilities.framework; path = Frameworks/GoogleSymbolUtilities.framework; sourceTree = "<group>"; };
-		BCF86639ECBF0CAB921EE61AF9203439 /* GoogleUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleUtilities.framework; path = Frameworks/GoogleUtilities.framework; sourceTree = "<group>"; };
-		BE5D0D798490A3F1102DC716B9AD531A /* Pods-TARTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TARTests.release.xcconfig"; sourceTree = "<group>"; };
-		BF2E9AC652F671412A846039F26BA4CF /* FIRInstanceID.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRInstanceID.h; path = Headers/Public/FIRInstanceID.h; sourceTree = "<group>"; };
-		C21B3948F2565159A230C588DE8497B8 /* Pods-TARUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TARUITests-dummy.m"; sourceTree = "<group>"; };
-		C4CB0FEF8139CA6E53667592AD02C467 /* FirebaseInstanceID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseInstanceID.framework; path = Frameworks/FirebaseInstanceID.framework; sourceTree = "<group>"; };
-		CE8511CAA77009E0AB90907C7633E45F /* GoogleInterchangeUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleInterchangeUtilities.framework; path = Frameworks/GoogleInterchangeUtilities.framework; sourceTree = "<group>"; };
+		9BB8E821546F1DA43F71B55F51DC82E8 /* Pods-TAR-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TAR-frameworks.sh"; sourceTree = "<group>"; };
+		9FFC5BA6D020F5463CA32CE80FDE0A29 /* WilddogCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WilddogCore.framework; sourceTree = "<group>"; };
+		A1F33A91E5BB7F3463AF706630A3EBA4 /* libPods-TAR.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TAR.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A83A6EFEFF7BE2F44B32FAF964E0E7C1 /* WilddogSync.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WilddogSync.framework; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		D59AEA997DB9B1C36419925BCC03E013 /* Pods-TAR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TAR.debug.xcconfig"; sourceTree = "<group>"; };
-		D63BC0542E83203322D90AC44368C43B /* libPods-TARTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TARTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D686DC4F873111ECE21F3C17C235E386 /* Pods-TARTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TARTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		E1ABE903D699BAE91A4381905EE1BAB8 /* Pods-TARUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TARUITests-resources.sh"; sourceTree = "<group>"; };
-		E2F6A69B72D67EA6E1FB4C3D89443D46 /* Pods-TARTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TARTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		ECE64D19200960091C99C65316755806 /* Pods-TAR-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TAR-resources.sh"; sourceTree = "<group>"; };
-		EE4BA8489064720893C5B22B3AB9B05C /* Pods-TARTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TARTests-dummy.m"; sourceTree = "<group>"; };
-		F773DAFAF9ADEB448FA0F7A9653ADA63 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMobileAds.framework; path = Frameworks/GoogleMobileAds.framework; sourceTree = "<group>"; };
-		F9B1834FAFB0DE1284F6ADB31A66F2EF /* Pods-TAR-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TAR-dummy.m"; sourceTree = "<group>"; };
+		DE1887BAA02A11C27BA568E5739CB66F /* Pods-TAR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TAR.release.xcconfig"; sourceTree = "<group>"; };
+		F5B846C113D171240633DCEE01571C44 /* Pods-TAR-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TAR-resources.sh"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		640D4BE3966000523543DB0A6F85B9E4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FF640FB823C7376B9C7E356F0A3DEFEA /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7267CD0AAE1B457A1D4D255552D93ADE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,55 +37,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CC73E0AE423284C75A67C5A671A5F8BE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				342254CCF57023EB15C900296F42390A /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		08061A600D9C1608A61D4183F366731D /* Frameworks */ = {
+		02F23AF98E72A6C7FFB426B421787083 /* WilddogSync */ = {
 			isa = PBXGroup;
 			children = (
-				B685BD2A7C826B38464745E073E406F9 /* GoogleSymbolUtilities.framework */,
+				9177B34F7C7F2F9FBA914467DA442F10 /* Frameworks */,
+			);
+			path = WilddogSync;
+			sourceTree = "<group>";
+		};
+		0C968E5D3D7C9EAB3F88101B31A2FA67 /* WilddogAuth */ = {
+			isa = PBXGroup;
+			children = (
+				288AC6187A8735993A61E5C2C9B36152 /* Frameworks */,
+			);
+			path = WilddogAuth;
+			sourceTree = "<group>";
+		};
+		1840D085CA6157194D5396A306423EB9 /* WilddogCore */ = {
+			isa = PBXGroup;
+			children = (
+				EAEE56EF2CE71C3816A087BD45BB91CE /* Frameworks */,
+			);
+			path = WilddogCore;
+			sourceTree = "<group>";
+		};
+		288AC6187A8735993A61E5C2C9B36152 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				51FD2D775469B61FC58AD9A541A466BF /* WilddogAuth.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2323D6EC256B9FF12F90A05F03C1F28C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				66DBFE686BC1A65A3EAD87247ABD39AF /* FirebaseAuth.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		326965F3282F57BEE7EC303A5D3FEBA8 /* Firebase */ = {
-			isa = PBXGroup;
-			children = (
-				E30EC37EDFE386EDF95687BEE2EF1F84 /* Analytics */,
-			);
-			path = Firebase;
-			sourceTree = "<group>";
-		};
-		34F3271499592D9F8EADD89270E64573 /* Google-Mobile-Ads-SDK */ = {
-			isa = PBXGroup;
-			children = (
-				9CE582FB5B041BD01746F79D3D61FB0F /* Frameworks */,
-			);
-			path = "Google-Mobile-Ads-SDK";
-			sourceTree = "<group>";
-		};
-		39210FBF8DD04B259860A347ED389942 /* FirebaseAuth */ = {
-			isa = PBXGroup;
-			children = (
-				2323D6EC256B9FF12F90A05F03C1F28C /* Frameworks */,
-			);
-			path = FirebaseAuth;
 			sourceTree = "<group>";
 		};
 		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
@@ -131,95 +80,27 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		3FAC7AB55FA41F852CE3EA7E06550C8E /* Products */ = {
+		63CA9D3400EFFA66C17C6E2173C5FA59 /* Pods-TAR */ = {
 			isa = PBXGroup;
 			children = (
-				75A73059EBB11C31687B4761276F19B6 /* libPods-TAR.a */,
-				D63BC0542E83203322D90AC44368C43B /* libPods-TARTests.a */,
-				6D8A02163D8D8C45714557A9253957FB /* libPods-TARUITests.a */,
+				8F8AC81DF3E75F356C17DB296DC696B5 /* Pods-TAR-acknowledgements.markdown */,
+				3237B1044AD8BCB81A72FF14FF62BFC5 /* Pods-TAR-acknowledgements.plist */,
+				91FC3BACB05148E6F12A8E9803A21FE5 /* Pods-TAR-dummy.m */,
+				9BB8E821546F1DA43F71B55F51DC82E8 /* Pods-TAR-frameworks.sh */,
+				F5B846C113D171240633DCEE01571C44 /* Pods-TAR-resources.sh */,
+				65A7C13ED9C920CD854016FA546FA2CD /* Pods-TAR.debug.xcconfig */,
+				DE1887BAA02A11C27BA568E5739CB66F /* Pods-TAR.release.xcconfig */,
 			);
-			name = Products;
+			name = "Pods-TAR";
+			path = "Target Support Files/Pods-TAR";
 			sourceTree = "<group>";
 		};
-		41975185EB4C548A23D83935C87937D5 /* Frameworks */ = {
+		687937408EA354B79B3940835E13954C /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				89CCA0F7A10655C93A117CED4C6321BC /* FirebaseDatabase.framework */,
+				2AFE33798225E360E8AE35F5C71E8C4A /* Wilddog.h */,
 			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4603E24B915967C623F2F2765D383919 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				326965F3282F57BEE7EC303A5D3FEBA8 /* Firebase */,
-				E8FF7B10BE42EDD502E3FC7B1C2D71AF /* FirebaseAnalytics */,
-				39210FBF8DD04B259860A347ED389942 /* FirebaseAuth */,
-				923F9AAB1CE6D1D701420E8A84403190 /* FirebaseDatabase */,
-				7F895D4474C41152A9D0E6B62AE761D2 /* FirebaseInstanceID */,
-				34F3271499592D9F8EADD89270E64573 /* Google-Mobile-Ads-SDK */,
-				897819C42DCAA5480A1BC68E17AA6D16 /* GoogleInterchangeUtilities */,
-				5E7138AFD225BE0139CA3F8EDAE8D929 /* GoogleNetworkingUtilities */,
-				7AFD4641F0BBDFE2EE5C19CC6721D8BC /* GoogleSymbolUtilities */,
-				CA191C408FC8F02FAA9D428E96C2E2CE /* GoogleUtilities */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		5E7138AFD225BE0139CA3F8EDAE8D929 /* GoogleNetworkingUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				931F50F554B74943E0DB94EE95256B5B /* Frameworks */,
-			);
-			path = GoogleNetworkingUtilities;
-			sourceTree = "<group>";
-		};
-		65AEF98EC17F1A9DD8381AFB412B3057 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				A06B1FB032390677179A7E86B2378FF4 /* Pods-TAR */,
-				75D83A6D52CC2583039B69773696D3CD /* Pods-TARTests */,
-				6C7ECECE8BABA37DC1A14418157958E4 /* Pods-TARUITests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		6C7ECECE8BABA37DC1A14418157958E4 /* Pods-TARUITests */ = {
-			isa = PBXGroup;
-			children = (
-				52CEEFF7F6BB82F7546616192431D27B /* Pods-TARUITests-acknowledgements.markdown */,
-				6C1955B49E324FBD052D0AC5786603C4 /* Pods-TARUITests-acknowledgements.plist */,
-				C21B3948F2565159A230C588DE8497B8 /* Pods-TARUITests-dummy.m */,
-				B4874D0037C0B65649EAD4DD072F090E /* Pods-TARUITests-frameworks.sh */,
-				E1ABE903D699BAE91A4381905EE1BAB8 /* Pods-TARUITests-resources.sh */,
-				4EB3324567152661B285BBE8C6DFE414 /* Pods-TARUITests.debug.xcconfig */,
-				2494EAF5697F5E329A670328B6B193A0 /* Pods-TARUITests.release.xcconfig */,
-			);
-			name = "Pods-TARUITests";
-			path = "Target Support Files/Pods-TARUITests";
-			sourceTree = "<group>";
-		};
-		75D83A6D52CC2583039B69773696D3CD /* Pods-TARTests */ = {
-			isa = PBXGroup;
-			children = (
-				E2F6A69B72D67EA6E1FB4C3D89443D46 /* Pods-TARTests-acknowledgements.markdown */,
-				D686DC4F873111ECE21F3C17C235E386 /* Pods-TARTests-acknowledgements.plist */,
-				EE4BA8489064720893C5B22B3AB9B05C /* Pods-TARTests-dummy.m */,
-				A0D78590A2A023CE9C7D8FFED4B4B5B1 /* Pods-TARTests-frameworks.sh */,
-				562DCBD43B0CA859B8514BD7A661E50A /* Pods-TARTests-resources.sh */,
-				097B2BEA914755C86193BA0DA7D2FFBE /* Pods-TARTests.debug.xcconfig */,
-				BE5D0D798490A3F1102DC716B9AD531A /* Pods-TARTests.release.xcconfig */,
-			);
-			name = "Pods-TARTests";
-			path = "Target Support Files/Pods-TARTests";
-			sourceTree = "<group>";
-		};
-		7AFD4641F0BBDFE2EE5C19CC6721D8BC /* GoogleSymbolUtilities */ = {
-			isa = PBXGroup;
-			children = (
-				08061A600D9C1608A61D4183F366731D /* Frameworks */,
-			);
-			path = GoogleSymbolUtilities;
+			name = Public;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -227,82 +108,34 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				4603E24B915967C623F2F2765D383919 /* Pods */,
-				3FAC7AB55FA41F852CE3EA7E06550C8E /* Products */,
-				65AEF98EC17F1A9DD8381AFB412B3057 /* Targets Support Files */,
+				DE1E9372C6420A49CD3B4F0B80D620ED /* Pods */,
+				DE512E3D1AD4F6D7ED51E643FBBFC429 /* Products */,
+				917559F07EF021EBAF20BA6D4D11CC9B /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		7F895D4474C41152A9D0E6B62AE761D2 /* FirebaseInstanceID */ = {
+		917559F07EF021EBAF20BA6D4D11CC9B /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				BF2E9AC652F671412A846039F26BA4CF /* FIRInstanceID.h */,
-				DA47FB4EF88A4549849F7A64EB6473B0 /* Frameworks */,
+				63CA9D3400EFFA66C17C6E2173C5FA59 /* Pods-TAR */,
 			);
-			path = FirebaseInstanceID;
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		81146E2FE33707CEA0966B14594E4646 /* Frameworks */ = {
+		9177B34F7C7F2F9FBA914467DA442F10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BCF86639ECBF0CAB921EE61AF9203439 /* GoogleUtilities.framework */,
+				A83A6EFEFF7BE2F44B32FAF964E0E7C1 /* WilddogSync.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		897819C42DCAA5480A1BC68E17AA6D16 /* GoogleInterchangeUtilities */ = {
+		97C7811E3FB8DEEA59305676582DD001 /* Wilddog */ = {
 			isa = PBXGroup;
 			children = (
-				D6A3CD817184CC3EE5AC91F159278DAC /* Frameworks */,
+				687937408EA354B79B3940835E13954C /* Public */,
 			);
-			path = GoogleInterchangeUtilities;
-			sourceTree = "<group>";
-		};
-		923F9AAB1CE6D1D701420E8A84403190 /* FirebaseDatabase */ = {
-			isa = PBXGroup;
-			children = (
-				41975185EB4C548A23D83935C87937D5 /* Frameworks */,
-			);
-			path = FirebaseDatabase;
-			sourceTree = "<group>";
-		};
-		931F50F554B74943E0DB94EE95256B5B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				45BD1E0EC3A205BB988C0F04FF27B64C /* GoogleNetworkingUtilities.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9B091736D82D199B11F4736C829F4775 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				80581BC98D0A7385587C11FF68611C51 /* FirebaseAnalytics.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9CE582FB5B041BD01746F79D3D61FB0F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F773DAFAF9ADEB448FA0F7A9653ADA63 /* GoogleMobileAds.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A06B1FB032390677179A7E86B2378FF4 /* Pods-TAR */ = {
-			isa = PBXGroup;
-			children = (
-				2D1BFF50B266D2A17A304BFD18DC4304 /* Pods-TAR-acknowledgements.markdown */,
-				4C58E53EC2AAB0F550390CF294B3A3E6 /* Pods-TAR-acknowledgements.plist */,
-				F9B1834FAFB0DE1284F6ADB31A66F2EF /* Pods-TAR-dummy.m */,
-				4E6A95EAEE0E0850DEA5A0C0130BF6DE /* Pods-TAR-frameworks.sh */,
-				ECE64D19200960091C99C65316755806 /* Pods-TAR-resources.sh */,
-				D59AEA997DB9B1C36419925BCC03E013 /* Pods-TAR.debug.xcconfig */,
-				36D337BEA0174247B8D288BFA8EC9535 /* Pods-TAR.release.xcconfig */,
-			);
-			name = "Pods-TAR";
-			path = "Target Support Files/Pods-TAR";
+			path = Wilddog;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -313,81 +146,36 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		CA191C408FC8F02FAA9D428E96C2E2CE /* GoogleUtilities */ = {
+		DE1E9372C6420A49CD3B4F0B80D620ED /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				81146E2FE33707CEA0966B14594E4646 /* Frameworks */,
+				97C7811E3FB8DEEA59305676582DD001 /* Wilddog */,
+				0C968E5D3D7C9EAB3F88101B31A2FA67 /* WilddogAuth */,
+				1840D085CA6157194D5396A306423EB9 /* WilddogCore */,
+				02F23AF98E72A6C7FFB426B421787083 /* WilddogSync */,
 			);
-			path = GoogleUtilities;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		D6A3CD817184CC3EE5AC91F159278DAC /* Frameworks */ = {
+		DE512E3D1AD4F6D7ED51E643FBBFC429 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE8511CAA77009E0AB90907C7633E45F /* GoogleInterchangeUtilities.framework */,
+				A1F33A91E5BB7F3463AF706630A3EBA4 /* libPods-TAR.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EAEE56EF2CE71C3816A087BD45BB91CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9FFC5BA6D020F5463CA32CE80FDE0A29 /* WilddogCore.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		DA47FB4EF88A4549849F7A64EB6473B0 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C4CB0FEF8139CA6E53667592AD02C467 /* FirebaseInstanceID.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E30EC37EDFE386EDF95687BEE2EF1F84 /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				067C3F570D0253ACD608585A5F417265 /* Firebase.h */,
-			);
-			name = Analytics;
-			sourceTree = "<group>";
-		};
-		E8FF7B10BE42EDD502E3FC7B1C2D71AF /* FirebaseAnalytics */ = {
-			isa = PBXGroup;
-			children = (
-				9B091736D82D199B11F4736C829F4775 /* Frameworks */,
-			);
-			path = FirebaseAnalytics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		484671AC67D9F9D7569690A2A1CB046B /* Pods-TARUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00EBD5504E10E866C6725D997062A938 /* Build configuration list for PBXNativeTarget "Pods-TARUITests" */;
-			buildPhases = (
-				103D52C56C4FF826506256DA8D7946B8 /* Sources */,
-				640D4BE3966000523543DB0A6F85B9E4 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-TARUITests";
-			productName = "Pods-TARUITests";
-			productReference = 6D8A02163D8D8C45714557A9253957FB /* libPods-TARUITests.a */;
-			productType = "com.apple.product-type.library.static";
-		};
-		99834CE1C155A2D0D91482F783D80EF3 /* Pods-TARTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EC8AD0055C14AF2ADA5D3F052986F5DC /* Build configuration list for PBXNativeTarget "Pods-TARTests" */;
-			buildPhases = (
-				D93CAC0555D175D7DE226C69C291CAB7 /* Sources */,
-				CC73E0AE423284C75A67C5A671A5F8BE /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-TARTests";
-			productName = "Pods-TARTests";
-			productReference = D63BC0542E83203322D90AC44368C43B /* libPods-TARTests.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 		BF0D310F8BD6D723C2153966E53CE324 /* Pods-TAR */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F25787D6920C26E3A66DBD4E9F57A0FD /* Build configuration list for PBXNativeTarget "Pods-TAR" */;
@@ -401,7 +189,7 @@
 			);
 			name = "Pods-TAR";
 			productName = "Pods-TAR";
-			productReference = 75A73059EBB11C31687B4761276F19B6 /* libPods-TAR.a */;
+			productReference = A1F33A91E5BB7F3463AF706630A3EBA4 /* libPods-TAR.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -421,26 +209,16 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 3FAC7AB55FA41F852CE3EA7E06550C8E /* Products */;
+			productRefGroup = DE512E3D1AD4F6D7ED51E643FBBFC429 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				BF0D310F8BD6D723C2153966E53CE324 /* Pods-TAR */,
-				99834CE1C155A2D0D91482F783D80EF3 /* Pods-TARTests */,
-				484671AC67D9F9D7569690A2A1CB046B /* Pods-TARUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		103D52C56C4FF826506256DA8D7946B8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5AF38805A32D1D31847301A2FD28FD14 /* Pods-TARUITests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		1B6F9C88CB9A1D17FA92FAECC0AC1C54 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -449,81 +227,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D93CAC0555D175D7DE226C69C291CAB7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DFC1CC861FB9FC5C1099F3356532B791 /* Pods-TARTests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		053992F70A6D2ABA619234EE12324627 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2494EAF5697F5E329A670328B6B193A0 /* Pods-TARUITests.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		1E030A6D7DB67435ED83F88B507EC76A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D59AEA997DB9B1C36419925BCC03E013 /* Pods-TAR.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		4AB61DB60FA23C2C94F697E2A26392DA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 097B2BEA914755C86193BA0DA7D2FFBE /* Pods-TARTests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		84FD87D359382A37B07149A12641B965 /* Debug */ = {
+		47BEF9D903506B003EA5C2B249729489 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -558,22 +265,43 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Debug;
 		};
-		C5F5CE91627E34AD7301CE089FE9083B /* Release */ = {
+		7D99902E777588D9DA289BB9C5825881 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BE5D0D798490A3F1102DC716B9AD531A /* Pods-TARTests.release.xcconfig */;
+			baseConfigurationReference = 65A7C13ED9C920CD854016FA546FA2CD /* Pods-TAR.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACH_O_TYPE = staticlib;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		9171FEC706CEAAD16D386AB16CEFBD77 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE1887BAA02A11C27BA568E5739CB66F /* Pods-TAR.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MACH_O_TYPE = staticlib;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
@@ -586,28 +314,7 @@
 			};
 			name = Release;
 		};
-		DE796267AD95F46C4C8A3F8BBDA2C45B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36D337BEA0174247B8D288BFA8EC9535 /* Pods-TAR.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		F594C655D48020EC34B00AA63E001773 /* Release */ = {
+		AAF678CED40D3499169D10F63CA0719E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -638,60 +345,21 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		F98E6119848393837DAEAE225DC5D1E1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EB3324567152661B285BBE8C6DFE414 /* Pods-TARUITests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00EBD5504E10E866C6725D997062A938 /* Build configuration list for PBXNativeTarget "Pods-TARUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F98E6119848393837DAEAE225DC5D1E1 /* Debug */,
-				053992F70A6D2ABA619234EE12324627 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				84FD87D359382A37B07149A12641B965 /* Debug */,
-				F594C655D48020EC34B00AA63E001773 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EC8AD0055C14AF2ADA5D3F052986F5DC /* Build configuration list for PBXNativeTarget "Pods-TARTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4AB61DB60FA23C2C94F697E2A26392DA /* Debug */,
-				C5F5CE91627E34AD7301CE089FE9083B /* Release */,
+				47BEF9D903506B003EA5C2B249729489 /* Debug */,
+				AAF678CED40D3499169D10F63CA0719E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -699,8 +367,8 @@
 		F25787D6920C26E3A66DBD4E9F57A0FD /* Build configuration list for PBXNativeTarget "Pods-TAR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1E030A6D7DB67435ED83F88B507EC76A /* Debug */,
-				DE796267AD95F46C4C8A3F8BBDA2C45B /* Release */,
+				7D99902E777588D9DA289BB9C5825881 /* Debug */,
+				9171FEC706CEAAD16D386AB16CEFBD77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

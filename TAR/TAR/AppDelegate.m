@@ -7,18 +7,23 @@
 //
 
 #import "AppDelegate.h"
-@interface AppDelegate ()
-
+@interface AppDelegate ()/*<BaiduMobAdSplashDelegate>
+@property (nonatomic, strong) BaiduMobAdSplash *splash;
+@property (nonatomic, retain) UIView *customSplashView;
+*/
 @end
 
 @implementation AppDelegate
-@synthesize firebase, user_ref, storyboard, defaultAction, uid, name;
+@synthesize wilddog, storyboard, defaultAction, uid, name;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [FIRApp configure];
-    firebase = [[FIRDatabase database] reference];
-    user_ref = [firebase child:@"users"];
+//    [FIRApp configure];
+//    firebase = [[FIRDatabase database] reference];
+//    user_ref = [firebase child:@"users"];
+    WDGOptions *option = [[WDGOptions alloc] initWithSyncURL:@"https://tar.wilddogio.com"];
+    [WDGApp configureWithOptions:option];
+    wilddog = [[WDGSync sync] reference];
     storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -29,8 +34,92 @@
     else if([signout isEqualToString:@"False"]){
         self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
     }
+    [self.window makeKeyAndVisible];
+    
+    //    自定义开屏
+    //
+//    BaiduMobAdSplash *splash = [[BaiduMobAdSplash alloc] init];
+//    splash.delegate = self;
+//    splash.AdUnitTag = @"2832245";
+//    splash.canSplashClick = YES;
+//    self.splash = splash;
+//    
+//    //可以在customSplashView上显示包含icon的自定义开屏
+//    self.customSplashView = [[UIView alloc]initWithFrame:self.window.frame];
+//    self.customSplashView.backgroundColor = [UIColor whiteColor];
+//    [self.window addSubview:self.customSplashView];
+//    
+//    CGFloat screenWidth = self.window.frame.size.width;
+//    CGFloat screenHeight = self.window.frame.size.height;
+//    
+//    //在baiduSplashContainer用做上展现百度广告的容器，注意尺寸必须大于200*200，并且baiduSplashContainer需要全部在window内，同时开机画面不建议旋转
+//    UIView * baiduSplashContainer = [[UIView alloc]initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight*0.85)];
+//    [self.customSplashView addSubview:baiduSplashContainer];
+//    
+//    UIImageView *icon = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2.0 - screenHeight*0.1, screenHeight*0.8875, screenHeight*0.075, screenHeight*0.075)];
+//    icon.image = [UIImage imageNamed:@"icon_TAR.png"];
+//    [self.customSplashView addSubview:icon];
+//    UIImageView *blackLine = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2.0 - screenHeight*0.0125, screenHeight*0.8875, screenHeight*0.025, screenHeight*0.075)];
+//    blackLine.image = [UIImage imageNamed:@"greyLine.png"];
+//    [self.customSplashView addSubview:blackLine];
+//    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(screenWidth/2.0 + screenHeight*0.025, screenHeight*0.8875, screenWidth/2.0, screenHeight*0.075)];
+//    label.text = @"TAR UIBE";
+//    [label setTextColor:[UIColor darkGrayColor]];
+//    label.textAlignment = NSTextAlignmentLeft;
+//    [self.customSplashView addSubview:label];
+//    UIButton *skipButton = [[UIButton alloc] initWithFrame:CGRectMake(screenWidth - screenHeight*0.125, screenHeight*0.0875, screenHeight*0.1, screenHeight*0.075)];
+//    [skipButton setBackgroundColor:[UIColor whiteColor]];
+//    [skipButton setTitle:@"skip" forState:UIControlStateNormal];
+//    skipButton.layer.borderColor = [UIColor clearColor].CGColor;
+//    skipButton.layer.borderWidth=1.0f;
+//    skipButton.layer.cornerRadius = screenWidth*0.4/20.0f;
+//    [skipButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+//    [skipButton addTarget:self
+//                 action:@selector(removeSplash)
+//       forControlEvents:UIControlEventTouchUpInside];
+//    [self.customSplashView addSubview:skipButton];
+//    //在的baiduSplashContainer里展现百度广告
+//    [splash loadAndDisplayUsingContainerView:baiduSplashContainer];
+    
     return YES;
 }
+
+//- (NSString *)publisherId {
+//    return @" f25e093b";
+//}
+//
+//- (void)splashDidClicked:(BaiduMobAdSplash *)splash {
+//    NSLog(@"splashDidClicked");
+//}
+//
+//- (void)splashDidDismissLp:(BaiduMobAdSplash *)splash {
+//    NSLog(@"splashDidDismissLp");
+//}
+//
+//- (void)splashDidDismissScreen:(BaiduMobAdSplash *)splash {
+//    NSLog(@"splashDidDismissScreen");
+//    [self removeSplash];
+//}
+//
+//- (void)splashSuccessPresentScreen:(BaiduMobAdSplash *)splash {
+//    NSLog(@"splashSuccessPresentScreen");
+//}
+//
+//- (void)splashlFailPresentScreen:(BaiduMobAdSplash *)splash withError:(BaiduMobFailReason)reason {
+//    NSLog(@"splashlFailPresentScreen withError %d", reason);
+//    [self removeSplash];
+//}
+//
+///**
+// *  展示结束or展示失败后, 手动移除splash和delegate
+// */
+//- (void) removeSplash {
+//    if (self.splash) {
+//        self.splash.delegate = nil;
+//        self.splash = nil;
+//        [self.customSplashView removeFromSuperview];
+//    }
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -54,7 +143,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
     [self saveContext];
-    [[FIRAuth auth] signOut:nil];
+    [[WDGAuth auth] signOut:nil];
 }
 
 #pragma mark - Core Data stack

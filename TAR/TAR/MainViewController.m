@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MainViewController.h"
-@interface MainViewController()
+@interface MainViewController()//<BaiduMobAdViewDelegate>
 
 @end
 
@@ -63,7 +63,55 @@ UITextField *accessCodeTextField;
     button.layer.borderColor=[UIColor redColor].CGColor;
     button.layer.borderWidth=2.0f;
     [self.view addSubview:button];
+    
+    CGFloat height;
+    if (screenRect.size.height <= 400) {
+        height = 32.0;
     }
+    else if(screenRect.size.height > 720){
+        height = 90.0;
+    }
+    else{
+        height = 50.0;
+    }
+    
+    //sign out button
+//    UIButton *signoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [signoutButton setTitle:@"sign out" forState:UIControlStateNormal];
+//    [signoutButton.titleLabel setFont:[UIFont systemFontOfSize:16]];
+//    [signoutButton setFrame:CGRectMake(screenRect.size.width - screenRect.size.width*0.21, screenRect.size.height - screenRect.size.width*0.05 - height, screenRect.size.width*0.21, screenRect.size.width*0.05)];
+//    [signoutButton addTarget:self action:@selector(signOut:) forControlEvents:UIControlEventTouchUpInside];
+//    [signoutButton setTitleColor:AvailableColor forState:UIControlStateNormal];
+//    [self.view addSubview:signoutButton];
+    
+    // admob advertisement
+    //        GADBannerView  *bannerview = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait origin:CGPointMake(0, screenRect.size.height - height)];
+    //    bannerview.adUnitID = @"ca-app-pub-4823300671805719/3134098385";
+    //    bannerview.rootViewController = self;
+    //    GADRequest *request = [[GADRequest alloc] init];
+    //    request.testDevices = @[ @"b58a64b5fb68d1edd21ac7fc32a335fc" ];
+    //    //[bannerview loadRequest:request];
+    //    [bannerview loadRequest:[GADRequest request]];
+    //    [self.view addSubview:bannerview];
+    
+    // baidu ad
+//    BaiduMobAdView *sharedAdView = [[BaiduMobAdView alloc] init];
+//    //把在mssp.baidu.com上创建后获得的代码位id写到这里
+//    sharedAdView.AdUnitTag = @"2832247";
+//    sharedAdView.AdType = BaiduMobAdViewTypeBanner;
+//    sharedAdView.frame = CGRectMake(0, screenRect.size.height - height, screenRect.size.width, height);
+//    sharedAdView.delegate = self;
+//    [self.view addSubview:sharedAdView];
+//    [sharedAdView start];
+}
+
+//- (NSString *)publisherId {
+//    return @" f25e093b";
+//}
+//
+//-(NSString*) userCity{
+//    return @"北京";
+//}
 
 -(void)viewDidAppear:(BOOL)animated{
     //get user defaults
@@ -77,79 +125,61 @@ UITextField *accessCodeTextField;
             UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"SignInViewController"];
             [self presentViewController:viewcontroller animated:YES completion:nil];
         }];
-        [[FIRAuth auth] signInWithEmail:[defaults objectForKey:@"account"] password:[defaults objectForKey:@"password"] completion:^(FIRUser *_Nullable user,NSError *error){
-            if (error) {
-                [mainSpinner stopAnimating];
-                NSString *errorMessage = [error localizedDescription];
-                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
-                [alert addAction:alertaction];
-                [self presentViewController:alert animated:YES completion:nil];
-                
-            } else {
-                appDelegate.uid = user.uid;
-                NSLog(@"%@", appDelegate.uid);
-                appDelegate.email = [defaults objectForKey:@"account"];
-                appDelegate.name = [defaults objectForKey:@"name"];
-                if(appDelegate.name == nil || [appDelegate.name isEqualToString:@""]){
-                    FIRDatabaseReference* checkIfIsTutor = [[FIRDatabase database] reference];
-                    checkIfIsTutor = [checkIfIsTutor child:@"users"];
-                    [checkIfIsTutor observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-                        NSDictionary *allUsers = snapshot.value;
+        [[WDGAuth auth] signInWithEmail:[defaults objectForKey:@"account"] password:[defaults objectForKey:@"password"] completion:^(WDGUser * _Nullable user, NSError * _Nullable error) {
+        if (error) {
+            [mainSpinner stopAnimating];
+            NSString *errorMessage = [error localizedDescription];
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:alertaction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+        } else {
+            appDelegate.uid = user.uid;
+            NSLog(@"%@", appDelegate.uid);
+            appDelegate.email = [defaults objectForKey:@"account"];
+            appDelegate.name = [defaults objectForKey:@"name"];
+            if(appDelegate.name == nil || [appDelegate.name isEqualToString:@""]){
+                WDGSyncReference *checkIfIsTutor = [[WDGSync sync] referenceWithPath:@"/users"];
+                [checkIfIsTutor observeSingleEventOfType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot *snapshot) {
+                    NSDictionary *allUsers = snapshot.value;
+                    NSLog(@"%@", allUsers);
+                    if([mainSpinner isAnimating]){
+                        [mainSpinner stopAnimating];
+                    }
+                    if([allUsers objectForKey:user.uid]!=nil){
+                        allUsers = [allUsers objectForKey:user.uid];
                         NSLog(@"%@", allUsers);
-                        if([mainSpinner isAnimating]){
-                            [mainSpinner stopAnimating];
-                        }
-                        if([allUsers objectForKey:user.uid]!=nil){
-                            allUsers = [allUsers objectForKey:user.uid];
-                            NSLog(@"%@", allUsers);
-                        }
-                        if(allUsers[@"name"] != nil && ![allUsers[@"name"] isEqualToString:@""]){
-                            appDelegate.name = allUsers[@"name"];
-                            [defaults setObject:allUsers[@"name"] forKey:@"name"];
-                        }
-                        else{
-                            UIAlertAction* alertaction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                                UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"SignInViewController"];
-                                [self presentViewController:viewcontroller animated:YES completion:nil];
-                            }];
-                            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Sorry, your identity can not be verified" preferredStyle:UIAlertControllerStyleAlert];
-                            [alert addAction:alertaction];
-                            [self presentViewController:alert animated:YES completion:nil];
-                        }
-                        
-                    }];
-                }
-                NSString* viewcontrollerToPresent = [defaults objectForKey:@"initialViewController"];
-                if (viewcontrollerToPresent == nil || [viewcontrollerToPresent isEqualToString:@""]) {
-                    viewcontrollerToPresent = @"MainViewController";
-                }
-                if([mainSpinner isAnimating]){
-                    [mainSpinner stopAnimating];
-                }
-                if([viewcontrollerToPresent isEqualToString:@"SurveyViewController"]){
-                    UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:viewcontrollerToPresent];
-                    [self presentViewController:viewcontroller animated:YES completion:nil];
-                }
-                NSLog(@"user should have signed in");
+                    }
+                    if(allUsers[@"name"] != nil && ![allUsers[@"name"] isEqualToString:@""]){
+                        appDelegate.name = allUsers[@"name"];
+                        [defaults setObject:allUsers[@"name"] forKey:@"name"];
+                    }
+                    else{
+                        UIAlertAction* alertaction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                            UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"SignInViewController"];
+                            [self presentViewController:viewcontroller animated:YES completion:nil];
+                        }];
+                        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Sorry, your identity can not be verified" preferredStyle:UIAlertControllerStyleAlert];
+                        [alert addAction:alertaction];
+                        [self presentViewController:alert animated:YES completion:nil];
+                    }
+                    
+                }];
             }
-        }];
-    //add ad
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat height;
-    if (screenRect.size.height <= 400) {
-        height = 32.0;
-    }
-    else if(screenRect.size.height > 720){
-        height = 90.0;
-    }
-    else{
-        height = 50.0;
-    }
-    GADBannerView  *bannerview = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait origin:CGPointMake(0, screenRect.size.height - height)];
-    bannerview.adUnitID = @"ca-app-pub-4823300671805719/5541324781";
-    bannerview.rootViewController = self;
-    [bannerview loadRequest:[GADRequest request]];
-    [self.view addSubview:bannerview];
+            NSString* viewcontrollerToPresent = [defaults objectForKey:@"initialViewController"];
+            if (viewcontrollerToPresent == nil || [viewcontrollerToPresent isEqualToString:@""]) {
+                viewcontrollerToPresent = @"MainViewController";
+            }
+            if([mainSpinner isAnimating]){
+                [mainSpinner stopAnimating];
+            }
+            if([viewcontrollerToPresent isEqualToString:@"SurveyViewController"]){
+                UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:viewcontrollerToPresent];
+                [self presentViewController:viewcontroller animated:YES completion:nil];
+            }
+            NSLog(@"user should have signed in");
+        }
+    }];
 }
 
 - (void)didTapButton:(UIButton *)button{
@@ -178,10 +208,8 @@ UITextField *accessCodeTextField;
                 batteryLevel = 0.0;
             }
             battery = [NSNumber numberWithFloat:batteryLevel];
-            FIRDatabaseReference *oberser = appDelegate.firebase;
-            [oberser child:@"classes"];
-        
-            [oberser observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+            WDGSyncReference *observer = [[WDGSync sync] reference];
+            [observer observeSingleEventOfType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot *snapshot) {
             NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
             [dateformate setDateFormat:@"dd-MM-YYYY"];
             NSString *date_String=[dateformate stringFromDate:[NSDate date]];
@@ -201,11 +229,8 @@ UITextField *accessCodeTextField;
                     [self presentViewController:alert animated:YES completion:nil];
                 }
                 else{
-                    FIRDatabaseReference *signin = appDelegate.firebase;
-                    signin = [signin child:@"classes"];
-                    signin = [signin child:date_String];
-                    signin = [signin child:accessString];
-                    [signin observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+                    WDGSyncReference *signin = [[WDGSync sync] referenceWithPath:[NSString stringWithFormat:@"/classes/%@/%@", date_String, accessString]];
+                    [signin observeSingleEventOfType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot *snapshot) {
                         NSMutableDictionary* data = snapshot.value;
                         NSMutableDictionary* students = data[@"students"];
                         NSString* uid = appDelegate.uid;
@@ -235,8 +260,7 @@ UITextField *accessCodeTextField;
                                 NSLog(@"error occuered, null uid read");
                             }
                         }
-                        appDelegate.surveyURL = [[FIRDatabase database] reference];
-                        appDelegate.surveyURL = [[[[[appDelegate.surveyURL  child:@"classes"] child:date_String] child:accessString] child:@"students"] child:uid];
+                        appDelegate.surveyRef = [[WDGSync sync] referenceWithPath:[NSString stringWithFormat:@"/classes/%@/%@/students", date_String, accessString]];
                         UIAlertAction* alertaction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                 UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"CurrentClassViewController"];
                                 [self presentViewController:viewcontroller animated:YES completion:nil];
@@ -256,6 +280,12 @@ UITextField *accessCodeTextField;
             }];
             }
     }
+}
+
+- (void)signOut:(UIButton *)button{
+    [[WDGAuth auth] signOut:nil];
+    UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"SignInViewController"];
+    [self presentViewController:viewcontroller animated:YES completion:nil];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

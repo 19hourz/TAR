@@ -4,17 +4,7 @@
 # use_frameworks!
 
 target 'TAR' do
-pod 'Firebase/Core'
-pod 'Firebase/Database'
-pod 'Firebase/Auth'
-pod 'Firebase/AdMob'
+    pod 'Wilddog'
 end
 
-target 'TARTests' do
-
-end
-
-target 'TARUITests' do
-
-end
 

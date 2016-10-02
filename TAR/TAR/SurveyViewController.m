@@ -17,12 +17,13 @@
 @synthesize appDelegate;
 
 NSUInteger current;
-UIButton *button;
+UIButton *nextButton;
 UIButton *backButton;
 UIButton *submitButton;
 UITextField* textField;
 NSUserDefaults* surveyAnswers;
 NSMutableDictionary* uploadAnswers;
+UILabel *process;
 UILabel *explanation3;
 CGFloat bx,by,bw,bh;
 CGFloat bbx,bby,bbw,bbh;
@@ -43,11 +44,16 @@ CGFloat bbx,bby,bbw,bbh;
     [explanation1 setTextAlignment:NSTextAlignmentCenter];
     explanation1.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:explanation1];
-    UILabel *explanation2 = [[UILabel alloc]initWithFrame:CGRectMake(screenRect.size.width*0.05, screenRect.size.height*0.15 + 75, screenRect.size.width*0.9, 20)];
+     UILabel *explanation2 = [[UILabel alloc]initWithFrame:CGRectMake(screenRect.size.width*0.05, screenRect.size.height*0.15 + 75, screenRect.size.width*0.9, 20)];
     explanation2.text = @"in order to be able to sign in to next class";
     [explanation2 setTextAlignment:NSTextAlignmentCenter];
     explanation2.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:explanation2];
+    process = [[UILabel alloc]initWithFrame:CGRectMake(screenRect.size.width*0.05, screenRect.size.height*0.15 + 100, screenRect.size.width*0.9, 20)];
+    process.text = [NSString stringWithFormat: @"( %lu / 7 )", (unsigned long)(current+1)];
+    [process setTextAlignment:NSTextAlignmentCenter];
+    process.font = [UIFont systemFontOfSize:15];
+    [self.view addSubview:process];
     explanation3 = [[UILabel alloc]initWithFrame:CGRectMake(screenRect.size.width*0.1, screenRect.size.height*0.35, screenRect.size.width*0.9, screenRect.size.height*0.05)];
     explanation3.text = @"Tutor name";
     [explanation3 setTextAlignment:NSTextAlignmentLeft];
@@ -63,20 +69,20 @@ CGFloat bbx,bby,bbw,bbh;
     [self.view addSubview:textField];
     
     //add a button
-    button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(screenRect.size.width*0.2, screenRect.size.height*0.53, screenRect.size.width*0.6, screenRect.size.height*0.1);
+    nextButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    nextButton.frame = CGRectMake(screenRect.size.width*0.2, screenRect.size.height*0.53, screenRect.size.width*0.6, screenRect.size.height*0.1);
     //[button setBackgroundColor:[UIColor colorWithRed:26/255.0 green:102/255.0 blue:140/255.0 alpha:1]];
-    button.tag = 1;
-    [button setTitle:@"Next  " forState:UIControlStateNormal];
-    [button.titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    button.contentEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
-    button.layer.cornerRadius = screenRect.size.width*0.4/10.0f;
-    button.layer.borderColor=[UIColor grayColor].CGColor;
-    button.layer.borderWidth=2.0f;
-    [button addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    nextButton.tag = 1;
+    [nextButton setTitle:@"Next  " forState:UIControlStateNormal];
+    [nextButton.titleLabel setFont:[UIFont systemFontOfSize:20]];
+    [nextButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    nextButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    nextButton.contentEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
+    nextButton.layer.cornerRadius = screenRect.size.width*0.4/10.0f;
+    nextButton.layer.borderColor=[UIColor grayColor].CGColor;
+    nextButton.layer.borderWidth=2.0f;
+    [nextButton addTarget:self action:@selector(didTapButton:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:nextButton];
     //add a back button
     backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     backButton.frame = CGRectMake(screenRect.size.width*0.2, screenRect.size.height*0.65, screenRect.size.width*0.6, screenRect.size.height*0.1);
@@ -93,11 +99,12 @@ CGFloat bbx,bby,bbw,bbh;
     [self.view addSubview:backButton];
     //add a submit button
     submitButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    submitButton.frame = CGRectMake(screenRect.size.width*0.2, screenRect.size.height*0.77, screenRect.size.width*0.6, screenRect.size.height*0.1);
+    submitButton.frame = CGRectMake(screenRect.size.width*0.2, screenRect.size.height*0.53, screenRect.size.width*0.6, screenRect.size.height*0.1);
+    //submitButton.frame = CGRectMake(screenRect.size.width*0.2, screenRect.size.height*0.77, screenRect.size.width*0.6, screenRect.size.height*0.1);
     submitButton.tag = 3;
     [submitButton setTitle:@"Submit  " forState:UIControlStateNormal];
     [submitButton.titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [submitButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [submitButton setTitleColor:AvailableColor forState:UIControlStateNormal];
     submitButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     submitButton.contentEdgeInsets = UIEdgeInsetsMake(0, 20, 0, 0);
     submitButton.layer.cornerRadius = screenRect.size.width*0.4/10.0f;
@@ -125,6 +132,22 @@ CGFloat bbx,bby,bbw,bbh;
 }
 
 - (void)didTapButton:(UIButton *)button{
+    if (explanation3.text && [explanation3.text containsString:@"out of 10"]) {
+        if (button.tag == 1) {
+            if (textField.text == nil) {
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Put a number!" preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:appDelegate.defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+                return;
+            }
+            else if ([textField.text integerValue] < 0 || [textField.text integerValue] > 10) {
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Invalid number!" preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:appDelegate.defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+                return;
+            }
+        }
+    }
     if(button.tag == 1){
         if(current == 0){
             current++;
@@ -179,12 +202,14 @@ CGFloat bbx,bby,bbw,bbh;
             textField.text = [surveyAnswers objectForKey:@"6"];
             textField.placeholder = @" 主管综合评价(out of 10)";
             [self.view addSubview:submitButton];
+            [nextButton removeFromSuperview];
             [surveyAnswers synchronize];
         }
         else if(current == 6){
             [surveyAnswers setObject:textField.text forKey:@"6"];
             [uploadAnswers setObject:textField.text forKey:@"6"];
         }
+        process.text = [NSString stringWithFormat: @"( %lu / 7 )", (unsigned long)(current+1)];
     }
     else if(button.tag == 2){
         if(current == 1){
@@ -222,45 +247,47 @@ CGFloat bbx,bby,bbw,bbh;
             explanation3.text = @"是否有料(out of 10)";
             textField.text = [surveyAnswers objectForKey:@"5"];
             textField.placeholder = @" 是否有料(out of 10)";
+            [self.view addSubview:nextButton];
             [submitButton removeFromSuperview];
         }
+        process.text = [NSString stringWithFormat: @"( %lu / 7 )", (unsigned long)(current+1)];
     }
     else if(button.tag == 3){
         [surveyAnswers setObject:textField.text forKey:@"6"];
         [uploadAnswers setObject:textField.text forKey:@"6"];
-        if(appDelegate.surveyURL == nil){
-            appDelegate.surveyURL = [[FIRDatabase database] reference];
+        WDGSyncReference *surveyRef = [[WDGSync sync] reference];
+        if (appDelegate.surveyRef == nil) {
             NSString* date_String = [surveyAnswers objectForKey:@"lostdate"];
             NSString* accessString = [surveyAnswers objectForKey:@"lostaccesscode"];
             NSString* uid = appDelegate.uid;
-            appDelegate.surveyURL = [[[[[appDelegate.surveyURL  child:@"classes"] child:date_String] child:accessString] child:@"students"] child:uid];
+            surveyRef = [[[[[surveyRef  child:@"classes"] child:date_String] child:accessString] child:@"students"] child:uid];
+        } else {
+            surveyRef = appDelegate.surveyRef;
         }
-        [appDelegate.surveyURL observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-            NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
-            [dateformate setDateFormat:@"dd-MM-HH-mm-ss"];
-            float batteryLevel = [UIDevice currentDevice].batteryLevel;
-            NSNumber* battery;
-            if (batteryLevel < 0.0) {
-                batteryLevel = 0.0;
-            }
-            battery = [NSNumber numberWithFloat:batteryLevel];
-            NSString *time_string = [dateformate stringFromDate:[NSDate date]];
-            NSDictionary *survey = @{@"survey" : uploadAnswers,
-                                     @"endbattery" : [NSString stringWithFormat:@"%@", battery],
-                                     @"endtime" : time_string};
-            [appDelegate.surveyURL updateChildValues:survey];
-            [surveyAnswers setObject:@"" forKey:@"0"];
-            [surveyAnswers setObject:@"" forKey:@"1"];
-            [surveyAnswers setObject:@"" forKey:@"2"];
-            [surveyAnswers setObject:@"" forKey:@"3"];
-            [surveyAnswers setObject:@"" forKey:@"4"];
-            [surveyAnswers setObject:@"" forKey:@"5"];
-            [surveyAnswers setObject:@"" forKey:@"6"];
-            [surveyAnswers setObject:@"MainViewController" forKey:@"initialViewController"];
-            [surveyAnswers synchronize];
-            UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-            [self presentViewController:viewcontroller animated:YES completion:nil];
-        }];
+        NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
+        [dateformate setDateFormat:@"dd-MM-HH-mm-ss"];
+        float batteryLevel = [UIDevice currentDevice].batteryLevel;
+        NSNumber* battery;
+        if (batteryLevel < 0.0) {
+            batteryLevel = 0.0;
+        }
+        battery = [NSNumber numberWithFloat:batteryLevel];
+        NSString *time_string = [dateformate stringFromDate:[NSDate date]];
+        NSDictionary *survey = @{@"survey" : uploadAnswers,
+                                @"endbattery" : [NSString stringWithFormat:@"%@", battery],
+                                @"endtime" : time_string};
+        [surveyRef updateChildValues:survey];
+        [surveyAnswers setObject:@"" forKey:@"0"];
+        [surveyAnswers setObject:@"" forKey:@"1"];
+        [surveyAnswers setObject:@"" forKey:@"2"];
+        [surveyAnswers setObject:@"" forKey:@"3"];
+        [surveyAnswers setObject:@"" forKey:@"4"];
+        [surveyAnswers setObject:@"" forKey:@"5"];
+        [surveyAnswers setObject:@"" forKey:@"6"];
+        [surveyAnswers setObject:@"MainViewController" forKey:@"initialViewController"];
+        [surveyAnswers synchronize];
+        UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+        [self presentViewController:viewcontroller animated:YES completion:nil];
     }
 }
 

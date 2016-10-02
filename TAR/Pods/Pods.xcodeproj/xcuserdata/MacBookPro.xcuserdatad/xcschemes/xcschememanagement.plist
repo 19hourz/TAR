@@ -9,29 +9,9 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-TARTests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-TARUITests.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>484671AC67D9F9D7569690A2A1CB046B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>99834CE1C155A2D0D91482F783D80EF3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>BF0D310F8BD6D723C2153966E53CE324</key>
 		<dict>
 			<key>primary</key>
