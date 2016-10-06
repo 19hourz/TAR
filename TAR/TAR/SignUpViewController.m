@@ -189,7 +189,7 @@ UIActivityIndicatorView* spinner;
                                                     @"name" : nameTextField.text
                                                     };
                         WDGSyncReference *userInfo = [[WDGSync sync] referenceWithPath:@"/users"];
-                        [[userInfo childByAutoId] setValue:user_info];
+                        [userInfo updateChildValues:@{user.uid : user_info}];
                     }];
                     appDelegate.email = emailTextField.text;
                     appDelegate.name = nameTextField.text;
