@@ -74,7 +74,7 @@ UITextField *accessCodeTextField;
     else{
         height = 50.0;
     }
-    
+
     //sign out button
 //    UIButton *signoutButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [signoutButton setTitle:@"sign out" forState:UIControlStateNormal];
@@ -125,61 +125,78 @@ UITextField *accessCodeTextField;
             UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"SignInViewController"];
             [self presentViewController:viewcontroller animated:YES completion:nil];
         }];
-        [[WDGAuth auth] signInWithEmail:[defaults objectForKey:@"account"] password:[defaults objectForKey:@"password"] completion:^(WDGUser * _Nullable user, NSError * _Nullable error) {
-        if (error) {
-            [mainSpinner stopAnimating];
-            NSString *errorMessage = [error localizedDescription];
-            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:alertaction];
-            [self presentViewController:alert animated:YES completion:nil];
-            
-        } else {
-            appDelegate.uid = user.uid;
-            NSLog(@"%@", appDelegate.uid);
-            appDelegate.email = [defaults objectForKey:@"account"];
-            appDelegate.name = [defaults objectForKey:@"name"];
-            if(appDelegate.name == nil || [appDelegate.name isEqualToString:@""]){
-                WDGSyncReference *checkIfIsTutor = [[WDGSync sync] referenceWithPath:@"/users"];
-                [checkIfIsTutor observeSingleEventOfType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot *snapshot) {
-                    NSDictionary *allUsers = snapshot.value;
-                    NSLog(@"%@", allUsers);
+        [[[WDGSync sync] reference] observeEventType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
+            NSString *appVersion = [NSString stringWithFormat:@"%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+            NSString *latestVersion = snapshot.value[@"TAR-iOS-Version"];
+            if (![latestVersion isEqualToString:appVersion]) {
+                UIAlertAction* alertactionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        NSURL *appStoreURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/app/id1101033177"]];
+                        [[UIApplication sharedApplication] openURL:appStoreURL];
+                    });
+                }];
+                UIAlertAction* alertactionNO = [UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil message:@"Please update your app" preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:alertactionOK];
+                [alert addAction:alertactionNO];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            [[WDGAuth auth] signInWithEmail:[defaults objectForKey:@"account"] password:[defaults objectForKey:@"password"] completion:^(WDGUser * _Nullable user, NSError * _Nullable error) {
+                if (error) {
+                    [mainSpinner stopAnimating];
+                    NSString *errorMessage = [error localizedDescription];
+                    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:alertaction];
+                    [self presentViewController:alert animated:YES completion:nil];
+                    
+                } else {
+                    appDelegate.uid = user.uid;
+                    NSLog(@"%@", appDelegate.uid);
+                    appDelegate.email = [defaults objectForKey:@"account"];
+                    appDelegate.name = [defaults objectForKey:@"name"];
+                    if(appDelegate.name == nil || [appDelegate.name isEqualToString:@""]){
+                        WDGSyncReference *checkIfIsTutor = [[WDGSync sync] referenceWithPath:@"/users"];
+                        [checkIfIsTutor observeSingleEventOfType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot *snapshot) {
+                            NSDictionary *allUsers = snapshot.value;
+                            NSLog(@"%@", allUsers);
+                            if([mainSpinner isAnimating]){
+                                [mainSpinner stopAnimating];
+                            }
+                            if([allUsers objectForKey:user.uid]!=nil){
+                                allUsers = [allUsers objectForKey:user.uid];
+                                NSLog(@"%@", allUsers);
+                            }
+                            if(allUsers[@"name"] != nil && ![allUsers[@"name"] isEqualToString:@""]){
+                                appDelegate.name = allUsers[@"name"];
+                                [defaults setObject:allUsers[@"name"] forKey:@"name"];
+                            }
+                            else{
+                                UIAlertAction* alertaction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                    UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"SignInViewController"];
+                                    [self presentViewController:viewcontroller animated:YES completion:nil];
+                                }];
+                                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Sorry, your identity can not be verified" preferredStyle:UIAlertControllerStyleAlert];
+                                [alert addAction:alertaction];
+                                [self presentViewController:alert animated:YES completion:nil];
+                            }
+                            
+                        }];
+                    }
+                    NSString* viewcontrollerToPresent = [defaults objectForKey:@"initialViewController"];
+                    if (viewcontrollerToPresent == nil || [viewcontrollerToPresent isEqualToString:@""]) {
+                        viewcontrollerToPresent = @"MainViewController";
+                    }
                     if([mainSpinner isAnimating]){
                         [mainSpinner stopAnimating];
                     }
-                    if([allUsers objectForKey:user.uid]!=nil){
-                        allUsers = [allUsers objectForKey:user.uid];
-                        NSLog(@"%@", allUsers);
+                    if([viewcontrollerToPresent isEqualToString:@"SurveyViewController"]){
+                        UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:viewcontrollerToPresent];
+                        [self presentViewController:viewcontroller animated:YES completion:nil];
                     }
-                    if(allUsers[@"name"] != nil && ![allUsers[@"name"] isEqualToString:@""]){
-                        appDelegate.name = allUsers[@"name"];
-                        [defaults setObject:allUsers[@"name"] forKey:@"name"];
-                    }
-                    else{
-                        UIAlertAction* alertaction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                            UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"SignInViewController"];
-                            [self presentViewController:viewcontroller animated:YES completion:nil];
-                        }];
-                        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Sorry, your identity can not be verified" preferredStyle:UIAlertControllerStyleAlert];
-                        [alert addAction:alertaction];
-                        [self presentViewController:alert animated:YES completion:nil];
-                    }
-                    
-                }];
-            }
-            NSString* viewcontrollerToPresent = [defaults objectForKey:@"initialViewController"];
-            if (viewcontrollerToPresent == nil || [viewcontrollerToPresent isEqualToString:@""]) {
-                viewcontrollerToPresent = @"MainViewController";
-            }
-            if([mainSpinner isAnimating]){
-                [mainSpinner stopAnimating];
-            }
-            if([viewcontrollerToPresent isEqualToString:@"SurveyViewController"]){
-                UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:viewcontrollerToPresent];
-                [self presentViewController:viewcontroller animated:YES completion:nil];
-            }
-            NSLog(@"user should have signed in");
-        }
-    }];
+                    NSLog(@"user should have signed in");
+                }
+            }];
+        }];
 }
 
 - (void)didTapButton:(UIButton *)button{
