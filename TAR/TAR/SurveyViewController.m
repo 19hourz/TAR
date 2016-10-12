@@ -50,19 +50,19 @@ CGFloat bbx,bby,bbw,bbh;
     explanation2.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:explanation2];
     process = [[UILabel alloc]initWithFrame:CGRectMake(screenRect.size.width*0.05, screenRect.size.height*0.15 + 100, screenRect.size.width*0.9, 20)];
-    process.text = [NSString stringWithFormat: @"( %lu / 7 )", (unsigned long)(current+1)];
+    process.text = [NSString stringWithFormat: @"( %lu / 2 )", (unsigned long)(current+1)];
     [process setTextAlignment:NSTextAlignmentCenter];
     process.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:process];
     explanation3 = [[UILabel alloc]initWithFrame:CGRectMake(screenRect.size.width*0.1, screenRect.size.height*0.35, screenRect.size.width*0.9, screenRect.size.height*0.05)];
-    explanation3.text = @"Tutor name";
+    explanation3.text = @"对本堂课以及tutor有什么意见以及建议";
     [explanation3 setTextAlignment:NSTextAlignmentLeft];
     explanation3.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:explanation3];
     //add email text field
     textField = [[UITextField alloc] initWithFrame:CGRectMake(screenRect.size.width*0.15, screenRect.size.height*0.4, screenRect.size.width*0.7, 31)];
     textField.borderStyle = UITextBorderStyleNone;
-    textField.placeholder = @" Tutor Name";
+    textField.placeholder = @" 意见以及建议";
     textField.delegate = self;
     [textField setKeyboardType:UIKeyboardTypeDefault];
     [textField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -133,8 +133,8 @@ CGFloat bbx,bby,bbw,bbh;
 
 - (void)didTapButton:(UIButton *)button{
     if (explanation3.text && [explanation3.text containsString:@"out of 10"]) {
-        if (button.tag == 1) {
-            if (textField.text == nil) {
+        if (button.tag == 1 || button.tag == 3) {
+            if ([textField.text isEqualToString:@""]) {
                 UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:@"Put a number!" preferredStyle:UIAlertControllerStyleAlert];
                 [alert addAction:appDelegate.defaultAction];
                 [self presentViewController:alert animated:YES completion:nil];
@@ -150,120 +150,70 @@ CGFloat bbx,bby,bbw,bbh;
     }
     if(button.tag == 1){
         if(current == 0){
-            current++;
-            explanation3.text = @"TA Class";
-            [surveyAnswers setObject:textField.text forKey:@"0"];
-            [uploadAnswers setObject:textField.text forKey:@"0"];
-            textField.placeholder = @" TA Class";
-            textField.text = [surveyAnswers objectForKey:@"1"];
-            [surveyAnswers synchronize];
+            if ([textField.text isEqualToString:@""]) {
+                int comment = arc4random()%10;
+                NSString *errorHead, *errorMsg;
+                switch (comment) {
+                    case 0:
+                        errorHead = @"哥";
+                        errorMsg = @"给点评价吧";
+                        break;
+                    case 1:
+                        errorHead = @"亲";
+                        errorMsg = @"给点评价吧";
+                        break;
+                    case 2:
+                        errorHead = @"哎呀";
+                        errorMsg = @"给点评价吧";
+                        break;
+                    default:
+                        errorHead = @"同学";
+                        errorMsg = @"给点评价吧";
+                        break;
+                        break;
+                }
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:errorHead message:errorMsg preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:appDelegate.defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+                return;
+            } else {
+                current++;
+                explanation3.text = @"主观综合评价(out of 10)";
+                [surveyAnswers setObject:textField.text forKey:@"0"];
+                [uploadAnswers setObject:textField.text forKey:@"0"];
+                textField.text = [surveyAnswers objectForKey:@"1"];
+                textField.placeholder = @" 主观综合评价(out of 10)";
+                [self.view addSubview:submitButton];
+                [nextButton removeFromSuperview];
+                [surveyAnswers synchronize];
+            }
         }
         else if(current == 1){
-            current++;
-            explanation3.text = @"课程节数";
             [surveyAnswers setObject:textField.text forKey:@"1"];
             [uploadAnswers setObject:textField.text forKey:@"1"];
-            textField.text = [surveyAnswers objectForKey:@"2"];
-            textField.placeholder = @" 课程节数";
-            [surveyAnswers synchronize];
         }
-        else if(current == 2){
-            current++;
-            explanation3.text = @"上课日期 (MMDD)";
-            [surveyAnswers setObject:textField.text forKey:@"2"];
-            [uploadAnswers setObject:textField.text forKey:@"2"];
-            textField.text = [surveyAnswers objectForKey:@"3"];
-            textField.placeholder = @" 上课日期 (MMDD)";
-            [surveyAnswers synchronize];
-        }
-        else if(current == 3){
-            current++;
-            explanation3.text = @"是否有趣(out of 10)";
-            [surveyAnswers setObject:textField.text forKey:@"3"];
-            [uploadAnswers setObject:textField.text forKey:@"3"];
-            textField.text = [surveyAnswers objectForKey:@"4"];
-            textField.placeholder = @" 是否有趣(out of 10)";
-            [surveyAnswers synchronize];
-        }
-        else if(current == 4){
-            current++;
-            explanation3.text = @"是否有料(out of 10)";
-            [surveyAnswers setObject:textField.text forKey:@"4"];
-            [uploadAnswers setObject:textField.text forKey:@"4"];
-            textField.text = [surveyAnswers objectForKey:@"5"];
-            textField.placeholder = @" 是否有料(out of 10)";
-            [surveyAnswers synchronize];
-        }
-        else if(current == 5){
-            current++;
-            explanation3.text = @"主管综合评价(out of 10)";
-            [surveyAnswers setObject:textField.text forKey:@"5"];
-            [uploadAnswers setObject:textField.text forKey:@"5"];
-            textField.text = [surveyAnswers objectForKey:@"6"];
-            textField.placeholder = @" 主管综合评价(out of 10)";
-            [self.view addSubview:submitButton];
-            [nextButton removeFromSuperview];
-            [surveyAnswers synchronize];
-        }
-        else if(current == 6){
-            [surveyAnswers setObject:textField.text forKey:@"6"];
-            [uploadAnswers setObject:textField.text forKey:@"6"];
-        }
-        process.text = [NSString stringWithFormat: @"( %lu / 7 )", (unsigned long)(current+1)];
+        process.text = [NSString stringWithFormat: @"( %lu / 2 )", (unsigned long)(current+1)];
     }
     else if(button.tag == 2){
         if(current == 1){
             current--;
-            explanation3.text = @"Tutor name";
+            explanation3.text = @"对本堂课以及tutor有什么意见以及建议";
             textField.text = [surveyAnswers objectForKey:@"0"];
-            textField.placeholder = @" Tutor name";
-        }
-        else if(current == 2){
-            current--;
-            explanation3.text = @"TA Class";
-            textField.text = [surveyAnswers objectForKey:@"1"];
-            textField.placeholder = @" TA Class";
-        }
-        else if(current == 3){
-            current--;
-            explanation3.text = @"课程节数";
-            textField.text = [surveyAnswers objectForKey:@"2"];
-            textField.placeholder = @" 课程节数";
-        }
-        else if(current == 4){
-            current--;
-            explanation3.text = @"上课日期 (MMDD)";
-            textField.text = [surveyAnswers objectForKey:@"3"];
-            textField.placeholder = @" 上课日期 (MMDD)";
-        }
-        else if(current == 5){
-            current--;
-            explanation3.text = @"是否有趣(out of 10)";
-            textField.text = [surveyAnswers objectForKey:@"4"];
-            textField.placeholder = @" 是否有趣(out of 10)";
-        }
-        else if(current == 6){
-            current--;
-            explanation3.text = @"是否有料(out of 10)";
-            textField.text = [surveyAnswers objectForKey:@"5"];
-            textField.placeholder = @" 是否有料(out of 10)";
-            [self.view addSubview:nextButton];
+            textField.placeholder = @" 意见以及建议";
             [submitButton removeFromSuperview];
+            [self.view addSubview:nextButton];
+            [surveyAnswers synchronize];
         }
-        process.text = [NSString stringWithFormat: @"( %lu / 7 )", (unsigned long)(current+1)];
+        process.text = [NSString stringWithFormat: @"( %lu / 2 )", (unsigned long)(current+1)];
     }
     else if(button.tag == 3){
-        [surveyAnswers setObject:textField.text forKey:@"6"];
-        [uploadAnswers setObject:textField.text forKey:@"6"];
+        [surveyAnswers setObject:textField.text forKey:@"1"];
+        [uploadAnswers setObject:textField.text forKey:@"1"];
         WDGSyncReference *surveyRef = [[WDGSync sync] reference];
-        if (appDelegate.surveyRef == nil) {
             NSString* date_String = [surveyAnswers objectForKey:@"lostdate"];
             NSString* accessString = [surveyAnswers objectForKey:@"lostaccesscode"];
             NSString* uid = appDelegate.uid;
             surveyRef = [[[[[surveyRef  child:@"classes"] child:date_String] child:accessString] child:@"students"] child:uid];
-        } else {
-            surveyRef = appDelegate.surveyRef;
-        }
         NSDateFormatter *dateformate=[[NSDateFormatter alloc]init];
         [dateformate setDateFormat:@"dd-MM-HH-mm-ss"];
         float batteryLevel = [UIDevice currentDevice].batteryLevel;
@@ -279,11 +229,6 @@ CGFloat bbx,bby,bbw,bbh;
         [surveyRef updateChildValues:survey];
         [surveyAnswers setObject:@"" forKey:@"0"];
         [surveyAnswers setObject:@"" forKey:@"1"];
-        [surveyAnswers setObject:@"" forKey:@"2"];
-        [surveyAnswers setObject:@"" forKey:@"3"];
-        [surveyAnswers setObject:@"" forKey:@"4"];
-        [surveyAnswers setObject:@"" forKey:@"5"];
-        [surveyAnswers setObject:@"" forKey:@"6"];
         [surveyAnswers setObject:@"MainViewController" forKey:@"initialViewController"];
         [surveyAnswers synchronize];
         UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
@@ -303,59 +248,11 @@ CGFloat bbx,bby,bbw,bbh;
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField{
-//    CGRect screenRect = [[UIScreen mainScreen] bounds];
-//    button.frame = CGRectMake(screenRect.size.width*0.2, screenRect.size.height*0.53, screenRect.size.width*0.6, screenRect.size.height*0.1);
-//    submitButton.frame = CGRectMake(screenRect.size.width*0.2, screenRect.size.height*0.77, screenRect.size.width*0.6, screenRect.size.height*0.1);
-//    backButton.frame = CGRectMake(screenRect.size.width*0.2, screenRect.size.height*0.65, screenRect.size.width*0.6, screenRect.size.height*0.1);
-    //[NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(withoutKeyboardView:) userInfo:nil repeats:YES];
     return YES;
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-//    CGRect screenRect = [[UIScreen mainScreen] bounds];
-//    button.frame = CGRectMake(screenRect.size.width*0.1, screenRect.size.height*0.48, screenRect.size.width*0.3, screenRect.size.height*0.1);
-//    backButton.frame = CGRectMake(screenRect.size.width*0.6, screenRect.size.height*0.48, screenRect.size.width*0.3, screenRect.size.height*0.1);
-//    submitButton.frame = CGRectMake(screenRect.size.width*0.2, screenRect.size.height*0.6, screenRect.size.width*0.6, screenRect.size.height*0.1);
-    //[NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(withKeyboardView:) userInfo:nil repeats:YES];
     return YES;
 }
-
-//- (void)withoutKeyboardView:(NSTimer*)timer
-//{
-//    //x -width*0.1; y -height*0.5; w width*0.3; h 0
-//    //x width*0.4; y -height*0.17; w -width*0.3
-//    CGRect screenRect = [[UIScreen mainScreen] bounds];
-//    bx = screenRect.size.width*0.1/20;
-//    by = screenRect.size.height*0.05/20;
-//    bw = screenRect.size.width*0.3/20;
-//    bbx = screenRect.size.width*0.4/20;
-//    bby = screenRect.size.height*0.17/20;
-//    //bbx = screenRect.size.
-//    button.frame = CGRectMake(button.frame.origin.x + bx, button.frame.origin.y + by, button.frame.size.width + bw, button.frame.size.height + bh);
-//    backButton.frame = CGRectMake(backButton.frame.origin.x - bbx, backButton.frame.origin.y + bby, backButton.frame.size.width + bw, backButton.frame.size.height + bbh);
-//    if(button.frame.size.width >= screenRect.size.width*0.6)
-//    {
-//        [timer invalidate];
-//    }
-//}
-//
-//- (void)withKeyboardView:(NSTimer*)timer
-//{
-//    //x -width*0.1; y -height*0.5; w width*0.3; h 0
-//    //x width*0.4; y -height*0.17; w -width*0.3
-//    CGRect screenRect = [[UIScreen mainScreen] bounds];
-//    bx = screenRect.size.width*0.1/20;
-//    by = screenRect.size.height*0.05/20;
-//    bw = screenRect.size.width*0.3/20;
-//    bbx = screenRect.size.width*0.4/20;
-//    bby = screenRect.size.height*0.17/20;
-//    //bbx = screenRect.size.
-//    button.frame = CGRectMake(button.frame.origin.x - bx, button.frame.origin.y - by, button.frame.size.width - bw, button.frame.size.height + bh);
-//    backButton.frame = CGRectMake(backButton.frame.origin.x + bbx, backButton.frame.origin.y - bby, backButton.frame.size.width - bw, backButton.frame.size.height + bbh);
-//    if(button.frame.size.width <= screenRect.size.width*0.3)
-//    {
-//        [timer invalidate];
-//    }
-//}
 
 @end
