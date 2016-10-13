@@ -55,14 +55,14 @@ CGFloat bbx,bby,bbw,bbh;
     process.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:process];
     explanation3 = [[UILabel alloc]initWithFrame:CGRectMake(screenRect.size.width*0.1, screenRect.size.height*0.35, screenRect.size.width*0.9, screenRect.size.height*0.05)];
-    explanation3.text = @"对本堂课以及tutor有什么意见以及建议";
+    explanation3.text = @"Comments for this class and tutor";//@"对本堂课以及tutor有什么意见以及建议";
     [explanation3 setTextAlignment:NSTextAlignmentLeft];
     explanation3.font = [UIFont systemFontOfSize:15];
     [self.view addSubview:explanation3];
     //add email text field
     textField = [[UITextField alloc] initWithFrame:CGRectMake(screenRect.size.width*0.15, screenRect.size.height*0.4, screenRect.size.width*0.7, 31)];
     textField.borderStyle = UITextBorderStyleNone;
-    textField.placeholder = @" 意见以及建议";
+    textField.placeholder = @" comments";
     textField.delegate = self;
     [textField setKeyboardType:UIKeyboardTypeDefault];
     [textField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -172,17 +172,19 @@ CGFloat bbx,bby,bbw,bbh;
                         break;
                         break;
                 }
+                errorHead = @"Hey";
+                errorMsg = @"Please leave some comments";
                 UIAlertController* alert = [UIAlertController alertControllerWithTitle:errorHead message:errorMsg preferredStyle:UIAlertControllerStyleAlert];
                 [alert addAction:appDelegate.defaultAction];
                 [self presentViewController:alert animated:YES completion:nil];
                 return;
             } else {
                 current++;
-                explanation3.text = @"主观综合评价(out of 10)";
+                explanation3.text = @"Overall rate(out of 10)";
                 [surveyAnswers setObject:textField.text forKey:@"0"];
                 [uploadAnswers setObject:textField.text forKey:@"0"];
                 textField.text = [surveyAnswers objectForKey:@"1"];
-                textField.placeholder = @" 主观综合评价(out of 10)";
+                textField.placeholder = @" Overall rate(out of 10)";
                 [self.view addSubview:submitButton];
                 [nextButton removeFromSuperview];
                 [surveyAnswers synchronize];
@@ -197,9 +199,9 @@ CGFloat bbx,bby,bbw,bbh;
     else if(button.tag == 2){
         if(current == 1){
             current--;
-            explanation3.text = @"对本堂课以及tutor有什么意见以及建议";
+            explanation3.text = @"Comments for this class and tutor";//@"对本堂课以及tutor有什么意见以及建议";
             textField.text = [surveyAnswers objectForKey:@"0"];
-            textField.placeholder = @" 意见以及建议";
+            textField.placeholder = @" comments";//@" 意见以及建议";
             [submitButton removeFromSuperview];
             [self.view addSubview:nextButton];
             [surveyAnswers synchronize];
