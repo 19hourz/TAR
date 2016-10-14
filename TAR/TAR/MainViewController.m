@@ -64,6 +64,14 @@ UITextField *accessCodeTextField;
     button.layer.borderWidth=2.0f;
     [self.view addSubview:button];
     
+    //add a version label
+    UILabel *versionString = [[UILabel alloc] initWithFrame:CGRectMake(0, screenRect.size.height * 0.92, screenRect.size.width, screenRect.size.height * 0.08)];
+    NSString *appVersion = [NSString stringWithFormat:@"%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    versionString.text = appVersion;
+    versionString.textColor = [UIColor grayColor];
+    versionString.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:versionString];
+    
     CGFloat height;
     if (screenRect.size.height <= 400) {
         height = 32.0;
@@ -125,31 +133,32 @@ UITextField *accessCodeTextField;
             UIViewController* viewcontroller = [appDelegate.storyboard instantiateViewControllerWithIdentifier:@"SignInViewController"];
             [self presentViewController:viewcontroller animated:YES completion:nil];
         }];
-        [[[WDGSync sync] reference] observeEventType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
-            NSString *appVersion = [NSString stringWithFormat:@"%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
-            NSString *latestVersion = snapshot.value[@"TAR-iOS-Version"];
-            if (![latestVersion isEqualToString:appVersion]) {
-                UIAlertAction* alertactionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        NSURL *appStoreURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/app/id1101033177"]];
-                        [[UIApplication sharedApplication] openURL:appStoreURL];
-                    });
-                }];
-                UIAlertAction* alertactionNO = [UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
-                UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil message:@"Please update your app" preferredStyle:UIAlertControllerStyleAlert];
-                [alert addAction:alertactionOK];
-                [alert addAction:alertactionNO];
-                [self presentViewController:alert animated:YES completion:nil];
-            }
-            [[WDGAuth auth] signInWithEmail:[defaults objectForKey:@"account"] password:[defaults objectForKey:@"password"] completion:^(WDGUser * _Nullable user, NSError * _Nullable error) {
-                if (error) {
-                    [mainSpinner stopAnimating];
-                    NSString *errorMessage = [error localizedDescription];
-                    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
-                    [alert addAction:alertaction];
+    [[WDGAuth auth] signInWithEmail:[defaults objectForKey:@"account"] password:[defaults objectForKey:@"password"] completion:^(WDGUser * _Nullable user, NSError * _Nullable error) {
+        if (error) {
+            [mainSpinner stopAnimating];
+            NSString *errorMessage = [error localizedDescription];
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error" message:errorMessage preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:alertaction];
+            [self presentViewController:alert animated:YES completion:nil];
+            
+        } else {
+            [[[WDGSync sync] reference] observeEventType:WDGDataEventTypeValue withBlock:^(WDGDataSnapshot * _Nonnull snapshot) {
+                NSString *appVersion = [NSString stringWithFormat:@"%@", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+                NSString *latestVersion = snapshot.value[@"TAR-iOS-Version"];
+                if (![latestVersion isEqualToString:appVersion]) {
+                    UIAlertAction* alertactionOK = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            NSURL *appStoreURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://itunes.apple.com/app/id1101033177"]];
+                            [[UIApplication sharedApplication] openURL:appStoreURL];
+                        });
+                    }];
+                    UIAlertAction* alertactionNO = [UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {}];
+                    UIAlertController* alert = [UIAlertController alertControllerWithTitle:nil message:@"Please update your app" preferredStyle:UIAlertControllerStyleAlert];
+                    [alert addAction:alertactionOK];
+                    [alert addAction:alertactionNO];
                     [self presentViewController:alert animated:YES completion:nil];
-                    
-                } else {
+                }
+                else{
                     appDelegate.uid = user.uid;
                     NSLog(@"%@", appDelegate.uid);
                     appDelegate.email = [defaults objectForKey:@"account"];
@@ -196,7 +205,9 @@ UITextField *accessCodeTextField;
                     NSLog(@"user should have signed in");
                 }
             }];
-        }];
+        }
+    }];
+    
 }
 
 - (void)didTapButton:(UIButton *)button{
